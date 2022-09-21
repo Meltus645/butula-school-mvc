@@ -1,5 +1,5 @@
 from dataclasses import field
-from src.api.models.subjectsModel import SubjectsModel
+from src.models.subjectsModel import SubjectsModel
 from mongoengine.errors import ValidationError, FieldDoesNotExist, NotUniqueError 
 from pymongo.errors import DuplicateKeyError
 

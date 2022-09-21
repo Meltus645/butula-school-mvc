@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_mongoengine import MongoEngine
 from pathlib import Path
-from .api.routes import subjects
+from .routes import subjects
 
 def create_app(test_config:dict =None):
     BASEDIR =Path(__file__).resolve().parent.parent 

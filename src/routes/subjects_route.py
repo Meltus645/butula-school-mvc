@@ -1,5 +1,5 @@
 from flask import Blueprint
-from src.api.controllers.subjects_controller import get, post, put, delete 
+from src.controllers.subjects_controller import get, post, put, delete 
 
 subjects_route =Blueprint('subjects_route', __name__)
 

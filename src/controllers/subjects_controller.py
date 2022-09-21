@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from mongoengine.errors import InvalidQueryError, LookUpError
-from src.api.services.subjects_service import get_subjects, post_subject, put_subject, delete_subject
+from src.services.subjects_service import get_subjects, post_subject, put_subject, delete_subject
 
 def get(id:str =None)->dict:
     try:  
