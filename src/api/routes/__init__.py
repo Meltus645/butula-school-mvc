@@ -1,0 +1,1 @@
+from .subjects_route import subjects_route as subjects
