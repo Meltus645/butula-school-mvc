@@ -20,7 +20,7 @@ html{
     --color-info-dark: #7d8da1; 
     --color-primary:rgba(14, 75, 155, 0.6);
     --color-primary-variant:rgba(14, 75, 155, 0.466);
-    --color-dark: #363949; 
+    --color-dark: #363949e0; 
     --color-dark-variant: #677483; 
     --bg-color-light: #f6f6f9; 
     --color-light: rgba(132, 139, 200, .18);
@@ -43,6 +43,15 @@ html, body{
 .color-warning{
     color: var(--color-warning);
 }
+.bg-primary{
+    background-color: var(--color-primary)!important;
+}
+.bg-danger{
+    background-color: var(--color-danger)!important;
+}
+.bg-success{
+    background-color: var(--color-success)!important;
+}
 
 img, a{
     display: block;
@@ -54,4 +63,5 @@ img{
 
 p{
     color: var(--color-dark);
+    margin: 0;
 }
