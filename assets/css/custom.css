@@ -1,0 +1,137 @@
+.cp-body{
+    width:100vw;
+    height: 100vh;
+    font-size: .88rem;
+    font-family: poppins, sans-serif;
+    background-color: var(--bg-color-light); 
+    overflow-x: hidden;
+} 
+
+a{
+    color: var(--color-dark)
+} 
+h1{
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2{
+    font-size: 1.35rem; 
+}
+
+h3{
+    font-size: 1rem; 
+    margin: 0;
+}
+
+h4{
+    font-size: .8rem;
+}
+
+h5{
+    font-size: .77rem;
+} 
+
+.profile-photo{
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+}
+
+.main-content{ 
+    display: grid;
+    grid-template-columns: 180px auto 23rem; 
+    gap: 1.8rem;
+} 
+
+aside{ 
+    height: 100vh; 
+    display: grid;
+    grid-template-rows: auto 86vh;
+    background-color: white;
+}
+.top{
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+} 
+.close-btn{
+    position: absolute;
+    top: .25rem;
+    right: .25rem; 
+    background: none;
+    display: block;
+    transition: .2s linear;
+}
+.close-btn:hover{ 
+    color: var(--color-danger)
+}
+aside .logo img{
+    width: 4rem; height: 4rem;
+    margin: 0 auto;
+} 
+
+.sidebar{
+    display: flex;
+    flex-direction: column; 
+}
+
+.sidebar .primary-nav{
+    flex:5;
+    position: relative;
+}
+.sidebar .secondary-nav{
+    flex:3;
+} 
+
+.sidebar .nav a{
+    display: flex;
+    align-items: center;  
+    position: relative; 
+    color: var(--color-info-dark);
+    gap: .75rem;
+    transition: all .3s ease; 
+    padding: 1rem;
+} 
+/* .sidebar .nav li{ 
+    margin: .125rem 0;
+} 
+.sidebar .nav li:hover{  
+    background-color: blue;
+}
+.sidebar .nav li:hover{  
+    background-color: blue;
+} */
+
+
+
+
+.sidebar .nav .nav-link.active, 
+.sidebar .nav .nav-link:hover {
+    color: var(--color-primary-variant); 
+}
+.sidebar .nav .nav-link:not(.active):hover {
+    transform: translateX(1.25rem);
+}
+.sidebar .nav .nav-link.active{ 
+    background-color: var(--bg-color-light);
+}
+
+.sidebar .nav .nav-link.active::before{
+    content: '';
+    width:5px;
+    position: absolute;
+    background-color: var(--color-primary);
+    top:0;bottom:0;
+    left:0;  
+}
+
+.count{
+    background-color: var(--color-danger);
+    color: var(--bg-color-light); 
+    padding: 2px;
+    width:12px; height: 12px;
+    text-align: center;
+    border-radius:50% ;
+}

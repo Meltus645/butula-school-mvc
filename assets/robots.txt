@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /staff/
+Disallow: /sr/
+Disallow: /student-portal
+Disallow: /auth/
+Disallow: /assets/
+
+sitemap: http://localhost:8080/sitemap.xml
