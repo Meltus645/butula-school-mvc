@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_mongoengine import MongoEngine
+from flask_wtf import CSRFProtect
 from pathlib import Path
-from .routes import subjects
+from .routes import subjects, admin, static, public
 
 def create_app(test_config:dict =None):
     BASEDIR =Path(__file__).resolve().parent.parent 
@@ -9,7 +10,14 @@ def create_app(test_config:dict =None):
 
     if test_config: app.config.from_mapping(test_config)
     else: app.config.from_pyfile(BASEDIR /'config.py')
-    MongoEngine(app) 
+
+    CSRFProtect(app=app)
+    MongoEngine(app=app) 
+
+    app.register_blueprint(static, url_prefix ='/')   
+    app.register_blueprint(public, url_prefix ='/')   
     app.register_blueprint(subjects, url_prefix ='/subjects')   
+    app.register_blueprint(admin, url_prefix ='/admin')   
+    
     return app
  
