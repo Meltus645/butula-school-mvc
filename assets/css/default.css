@@ -13,9 +13,9 @@ html{
 }
 
 :root{
-    --color-danger: #ff7782;
+    --color-danger: #ff7782; 
     --color-success: #41f1b6;
-    --color-warning: #ffbb55; 
+    --color-warning: #ffbb55;   
     --color-white: #ffffff; 
     --color-info-dark: #7d8da1; 
     --color-primary:rgba(14, 75, 155, 0.6);
@@ -24,8 +24,9 @@ html{
     --color-dark-variant: #677483; 
     --bg-color-light: #f6f6f9; 
     --color-light: rgba(132, 139, 200, .18);
-
-    --box-shadow: 0 2rem 3rem var(--color-light);
+    --sidebar-offset:180px;
+    --rightbar-offset: 18rem;
+    --box-shadow: 1px 1px 5px var(--color-light);
 }
 
 html, body{
