@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="tabs">
+        <div class="d-flex tab-labels">
+            <button type="button" data-uri="" class="btn-tab {% if action =='list' %}active{%endif%}" onclick="activateTab(this, '{{page}}');">List</button> 
+            <button type="button" data-uri="/new" class="btn-tab {% if action =='new' %}active{%endif%}" onclick="activateTab(this, '{{page}}');">New</button> 
+            <button type="button" data-uri="/edit" class="btn-tab {% if action =='edit' %}active{%endif%}" onclick="activateTab(this, '{{page}}');">Edit</button> 
+            <button type="button" data-uri="/view" class="btn-tab {% if action =='view' %}active{%endif%}" onclick="activateTab(this, '{{page}}');">View</button> 
+        </div>
+        <div class="tab-content" id="tabContent">
+            {% if action =='view'%} {% include 'view.html'%} 
+            {% elif action == 'edit' or action == 'new'%} {% include 'form.html'%} 
+            {% else %} {% include 'list.html'%}
+            {% endif %}
+        </div>
+    </div>
+{% endblock content%}
