@@ -1,15 +1,16 @@
 from flask import Flask
 from flask_mongoengine import MongoEngine
 from flask_wtf import CSRFProtect
-from pathlib import Path
+
+from .utils.constants import BASEDIR
 from .routes import subjects, admin, static, public
 
 def create_app(test_config:dict =None):
-    BASEDIR =Path(__file__).resolve().parent.parent 
+     
     app =Flask(__name__, static_folder =BASEDIR /'assets', template_folder =BASEDIR /'templates')
 
     if test_config: app.config.from_mapping(test_config)
-    else: app.config.from_pyfile(BASEDIR /'config.py')
+    else: app.config.from_pyfile(BASEDIR /'config.py') 
 
     CSRFProtect(app=app)
     MongoEngine(app=app) 
