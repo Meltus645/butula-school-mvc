@@ -4,6 +4,7 @@ from .rolesModel import RolesModel
 
 class StaffModel(Document):
     name =StringField(regex=r'^[a-zA-Z]+$', required =True, max_length=128) 
+    staffid =StringField(regex=r'^[a-zA-Z]+$', required =True, max_length=128) 
     phone =StringField(regex=r'^[a-zA-Z]+$', required =True, unique =True, max_length=13)
     email =DictField(required =True) #{'address': '', 'verified': False} 
     gender =StringField(required =True, max_length=6, regex=r'^[a-zA-Z]+$')
