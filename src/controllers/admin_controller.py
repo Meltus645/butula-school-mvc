@@ -7,7 +7,7 @@ from flask_wtf import FlaskForm
 def dashboard():
     return render_template('admin/base.html', page="dashboard")
 
-def users(type:str, action='list'): 
+def users(type:str, action='list', id =None, section:str ='bio'): 
     action =action.lower()
     type =type.lower() 
     params =request.args  
@@ -26,10 +26,10 @@ def users(type:str, action='list'):
         form =forms[type]
         if params.get('init') =='app': return render_template('form.html', form =form) 
 
-    if action == 'view': 
-        if params.get('init') =='app': return render_template('view.html') 
+    if action == 'view':  
+        if params.get('init') =='app': return render_template('view.html', page=type, section =section) 
 
-    return render_template(f'{type}.html', page=type, action =action, form =form)
+    return render_template(f'{type}.html', page=type, action =action, form =form, section =section)
 
  
 def academics(): pass
