@@ -1,17 +1,18 @@
-from dataclasses import field
 from src.models.subjectsModel import SubjectsModel
 from mongoengine.errors import ValidationError, FieldDoesNotExist, NotUniqueError 
 from pymongo.errors import DuplicateKeyError
 
-def get_subjects(id:str=None, search_q:str =None, **filters)->tuple:
+def get_subject(id:str=None, search_q:str =None, **filters)->dict:
     try: 
+
         if id: queryset:dict =SubjectsModel.objects.get(id=id)
         elif search_q: queryset:list =SubjectsModel.objects.search_text(search_q).order_by('code')
         else: queryset:list =SubjectsModel.objects.filter(**filters).order_by('code')
-        response ={'data': queryset}, 200
-    except ValidationError as e:  response = { 'detail': 'cannot resolve params parsed' }, 400  
+        response =queryset
+
+    except ValidationError as e:  response = { 'detail': 'cannot resolve params parsed' } 
     except SubjectsModel.DoesNotExist: response ={'detail': 'subject missing. It could have been moved. Refresh this window and retry'}, 404
-    except Exception as e: response ={'detail': f'{e}'}, 500
+    except Exception as e: response ={'detail': f'{e}'} 
     finally:  return response 
 
 def post_subject(data:dict)->tuple:  
@@ -39,9 +40,9 @@ def put_subject(id:str, data:dict)->tuple:
     #     response ={'detail': f'{e}'},500
     finally: return response
 
-def delete_subject(id:str)->tuple:
+def delete_subject(id:str)->dict:
     try:
         SubjectsModel.objects.get(id=id).delete() 
-        response ={'detail': 'subject removed successfully' }, 204
+        response ={'detail': 204} 
     except SubjectsModel.DoesNotExist: response ={'detail': 'subject missing. It could have been moved. Refresh this window and retry'}, 404
     finally: return response
