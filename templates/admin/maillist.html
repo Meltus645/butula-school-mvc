@@ -1,0 +1,13 @@
+<div class="view-tabs">
+    <div class="d-flex tab-labels">
+        <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Recent Subcribers</button> 
+        <button type="button" data-uri="/unread" class="btn-tab {% if section =='unread' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">All Subscribers</button> 
+    </div>
+    <div class="view-tab-content pt-4" id="viewTabContent">
+        {% if section =='bio' %} {% include 'bio.html'   %}
+        {% elif section =='performance' %} {% include 'performance.html'   %}
+        {% elif section =='subjects' %} {% include 'subjects.html'   %}
+        {% elif section =='transcript' %} {% include 'transcript.html'   %}
+        {% endif %} 
+    </div>
+</div>

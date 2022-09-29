@@ -29,7 +29,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                         <h3 class="togglable-text">Dashboard</h3>
                     </a> 
-                    <a data-label ="Library" class="nav-link" href="">
+                    <a data-label ="Library" class="nav-link" href="{{ url_for('admin.academics' ) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                         <h3 class="togglable-text">E-learning</h3>
                     </a> 
@@ -187,44 +187,45 @@
                 </div>
             </div>
             <div class="recent-tickets mt-4">
-                <h2 class="pb-3">Recent messages</h2>
+                <h2 class="pb-3">{% block sectionHead %}Recent messages{% endblock %}</h2>
                 <div class="tickets">
-                    <a class="ticket pb-2" href="">
-                        <b>Meltus Bwire</b>
-                        <div class="d-flex justify-content-between ticket-excerpt">
-                            <p>Sample ticket message</p>
-                            <small>2 days ago</small>
-                        </div> 
-                    </a>
-                    <a class="ticket pb-2" href="">
-                        <b>Meltus Bwire</b>
-                        <div class="d-flex justify-content-between ticket-excerpt">
-                            <p>Sample ticket message</p>
-                            <small>2 days ago</small>
-                        </div> 
-                    </a>
-                    <a class="ticket pb-2" href="">
-                        <b>Meltus Bwire</b>
-                        <div class="d-flex justify-content-between ticket-excerpt">
-                            <p>Sample ticket message</p>
-                            <small>2 days ago</small>
-                        </div> 
-                    </a>
-                    <a class="ticket pb-2" href="">
-                        <b>Meltus Bwire</b>
-                        <div class="d-flex justify-content-between ticket-excerpt">
-                            <p>Sample ticket message</p>
-                            <small>2 days ago</small>
-                        </div> 
-                    </a>
-                    <a class="ticket pb-2" href="">
-                        <b>Meltus Bwire</b>
-                        <div class="d-flex justify-content-between ticket-excerpt">
-                            <p>Sample ticket message</p>
-                            <small>2 days ago</small>
-                        </div> 
-                    </a>
-                     
+                    {% block navigation %} 
+                        <a class="ticket pb-2" href="">
+                            <b>Meltus Bwire</b>
+                            <div class="d-flex justify-content-between ticket-excerpt">
+                                <p>Sample ticket message</p>
+                                <small>2 days ago</small>
+                            </div> 
+                        </a>
+                        <a class="ticket pb-2" href="">
+                            <b>Meltus Bwire</b>
+                            <div class="d-flex justify-content-between ticket-excerpt">
+                                <p>Sample ticket message</p>
+                                <small>2 days ago</small>
+                            </div> 
+                        </a>
+                        <a class="ticket pb-2" href="">
+                            <b>Meltus Bwire</b>
+                            <div class="d-flex justify-content-between ticket-excerpt">
+                                <p>Sample ticket message</p>
+                                <small>2 days ago</small>
+                            </div> 
+                        </a>
+                        <a class="ticket pb-2" href="">
+                            <b>Meltus Bwire</b>
+                            <div class="d-flex justify-content-between ticket-excerpt">
+                                <p>Sample ticket message</p>
+                                <small>2 days ago</small>
+                            </div> 
+                        </a>
+                        <a class="ticket pb-2" href="">
+                            <b>Meltus Bwire</b>
+                            <div class="d-flex justify-content-between ticket-excerpt">
+                                <p>Sample ticket message</p>
+                                <small>2 days ago</small>
+                            </div> 
+                        </a>
+                    {% endblock %} 
                 </div>
             </div>
             <div class="quick-feeds mt-4">

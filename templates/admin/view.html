@@ -1,17 +1,17 @@
 <div class="view-tabs">
     <div class="d-flex tab-labels">
-        <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Bio</button> 
+        <button type="button" data-uri="{{ url_for('admin.users', type =page|lower, action ='view') }}" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this);">Bio</button> 
         {% if page | lower  =="students"%} 
-        <button type="button" data-uri="/subjects" class="btn-tab {% if section =='subjects' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Subjects</button> 
-        <button type="button" data-uri="/performance" class="btn-tab {% if section =='performance' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Performance</button> 
-        <button type="button" data-uri="/transcript" class="btn-tab {% if section =='transcript' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Transcript</button> 
+        <button type="button" data-uri="{{ url_for('admin.users', type =page|lower, action ='view', section ='subjects') }}" class="btn-tab {% if section =='subjects' %}active{%endif%}" onclick="activateTab(this);">Subjects</button> 
+        <button type="button" data-uri="{{ url_for('admin.users', type =page|lower, action ='view', section ='performance') }}" class="btn-tab {% if section =='performance' %}active{%endif%}" onclick="activateTab(this);">Performance</button> 
+        <button type="button" data-uri="{{ url_for('admin.users', type =page|lower, action ='view', section ='transcript') }}" class="btn-tab {% if section =='transcript' %}active{%endif%}" onclick="activateTab(this);">Transcript</button> 
         {% elif page | lower  =="staff"%} 
-        <button type="button" data-uri="/contacts" class="btn-tab {% if section =='contacts' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Contacts</button> 
-        <button type="button" data-uri="/role" class="btn-tab {% if section =='role' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Role</button> 
-        <button type="button" data-uri="/permissions" class="btn-tab {% if section =='permissions' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Permissions</button> 
+        <button type="button" data-uri="{{ url_for('admin.users', type =page|lower, action ='view', section ='contacts') }}" class="btn-tab {% if section =='contacts' %}active{%endif%}" onclick="activateTab(this);">Contacts</button> 
+        <button type="button" data-uri="{{ url_for('admin.users', type =page|lower, action ='view', section ='role') }}" class="btn-tab {% if section =='role' %}active{%endif%}" onclick="activateTab(this);">Role</button> 
+        <button type="button" data-uri="{{ url_for('admin.users', type =page|lower, action ='view', section ='permissions') }}" class="btn-tab {% if section =='permissions' %}active{%endif%}" onclick="activateTab(this);">Permissions</button> 
         {% endif %}
     </div>
-    <div class="view-tab-content py-4" id="viewTabContent">
+    <div class="view-tab-content pt-4" id="viewTabContent">
         {% if section =='bio' %} {% include 'bio.html'   %}
         {% elif section =='performance' %} {% include 'performance.html'   %}
         {% elif section =='subjects' %} {% include 'subjects.html'   %}

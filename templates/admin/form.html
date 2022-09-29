@@ -1,28 +1,29 @@
-{% set data = {} %}
-{% set placeholders = {} %}
+{% if not placeholders %} {% set placeholders = {} %} {%endif%}
+{% if not data %} {% set data = {} %} {%endif%}
 
 {% if form %}
-    {% for field in form() %} 
-        {% if field.name =='csrf_token'%} {{field()}}
-        {% else%} 
-        <div class="form-group mb-4" style="position: relative;">
-            <label for="{{field.name}}" class="form-label">{{field.label()}}</label>  
-            {%if field.type =='SelectField'%}
-            {{field(class_ ="form-select", placeholder =placeholders[field.name], value =data[field.name])}}
-            {%elif field.type =='FileField'%}
-            <button class="custom-file-field" type="button" onclick ="openFile(this)" data-click="#{{field.id}}" data-form="ctrl-form"><span class="span">Choose file</span><span id="file-label">{%if data %} {{data['filename']}} {%else%}No file chosen{%endif%}</span></button>
-            {{field(hidden =true, **{'data-file-label': '#file-label'})}}
-            {%elif field.type =='IntegerField' and field.name =='level'%}
-            <div class="d-flex custom-group align-items-center"><span>Form</span>{{field(class_ ="form-control", value =data[field.name], min =1, max =6, tabindex ="1", **{'data-type': 'integer'})}}</div>  
-            {% else%}  
-            {{field(class_ ="form-control", value =data[field.name])}}
+    <form action="" method="post" onsubmit="postForm(event)"> 
+        {% for field in form() %} 
+            {% if field.name =='csrf_token'%} {{field()}}
+            {% else%} 
+            <div class="form-group mb-4" style="position: relative;">
+                <label for="{{field.name}}" class="form-label">{{field.label()}}</label>  
+                {%if field.type =='SelectField'%}
+                {{field(class_ ="form-select", placeholder =placeholders[field.name], value =data[field.name])}}
+                {%elif field.type =='FileField'%}
+                <button class="custom-file-field" type="button" onclick ="openFile(this)" data-click="#{{field.id}}" data-form="ctrl-form"><span class="span">Choose file</span><span id="file-label">{%if data %} {{data['filename']}} {%else%}No file chosen{%endif%}</span></button>
+                {{field(hidden =true, **{'data-file-label': '#file-label'})}}
+                {%elif field.type =='IntegerField' and field.name =='level'%}
+                <div class="d-flex custom-group align-items-center"><span>Form</span>{{field(placeholder =placeholders[field.name], class_ ="form-control", value =data[field.name], min =1, max =6, tabindex ="1", **{'data-type': 'integer'})}}</div>  
+                {% else%}  
+                {{field(class_ ="form-control", value =data[field.name], placeholder =placeholders[field.name],)}}
+                {%endif%}
+                <small class="d-block text-danger" id="{{field.name}}-helper" data-node ="small" style="position: absolute;left: 0; bottom: -1.25rem; font-size: 85%;"></small>
+            </div>  
             {%endif%}
-            <small class="d-block text-danger" id="{{field.name}}-helper" data-node ="small" style="position: absolute;left: 0; bottom: -1.25rem; font-size: 85%;"></small>
-        </div>  
-        {%endif%}
-    {% endfor %}
-    <button class="btn btn-success" type="submit" id="save">Save</button>
-</form>
+        {% endfor %}
+        <button class="btn btn-success" type="submit" id="save">Save</button>
+    </form>
 {% else %}    
 form field
-{% endif %}
+{% endif %} 
