@@ -1,5 +1,5 @@
 import smtplib, ssl
-from src.utils.constants import EMAIL, PASSWORD
+from src.utils.constants.global import EMAIL, PASSWORD
 
 class Mailer(smtplib):
     REPORT ={
