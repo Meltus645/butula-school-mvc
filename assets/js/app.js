@@ -18,15 +18,24 @@ const request =async (endpoint, method ='GET', data=null, csrf_token=null)  =>{
     finally{return response;}
 };  
 
-const activateTab = async (self, section) =>{
-    const {parentNode, dataset} =self;
-    const root_url =`http://localhost:8080/admin/${section}`  
+const activateTab = async self =>{ 
+    const {parentNode, dataset} =self;  
     for(const node of parentNode.children) node.classList.contains('active') && node !== self? node.classList.remove('active'): self.classList.add('active');
-    
-    const endpoint =`${root_url}${dataset.uri}`
-    history.pushState('', '', endpoint)
-    const response =await request(`${endpoint}?init=app`);  
+     
+    history.pushState('', '', dataset.uri)
+    const response =await request(`${dataset.uri}?init=app`);  
 
     if(response.ok) document.querySelector('#tabContent').innerHTML =await response.text(); 
 }
  
+const promptDelete =async (self, item) =>{
+    const {dataset} =self;
+    if(!confirm(`Are you sure to delete ${item}?\nThis action cannot be undone!`)) return;
+    const delete_response =await request(dataset.uri);
+    if(delete_response.ok){
+        const {deleted, detail} =await delete_response.json()
+        if (deleted) activateTab(document.getElementById('list'));
+        else alert(detail);
+    }
+    
+}
