@@ -3,7 +3,7 @@ from mongoengine.errors import ValidationError, FieldDoesNotExist, NotUniqueErro
 from pymongo.errors import DuplicateKeyError
 from src.models.studentsModel import StudentsModel
 
-def get_sutudent(id:str=None, search_q:str =None, **filters)->tuple:
+def get_student(id:str=None, search_q:str =None, **filters)->tuple:
     try: 
         if id: queryset:dict =StudentsModel.objects.get(id=id)
         elif search_q: queryset:list =StudentsModel.objects.search_text(search_q).order_by('name')
