@@ -18,9 +18,9 @@ const request =async (endpoint, method ='GET', data=null, csrf_token=null)  =>{
     finally{return response;}
 };  
 
-const activateTab = async (self, page) =>{
+const activateTab = async (self, section) =>{
     const {parentNode, dataset} =self;
-    const root_url =`http://localhost:8080/admin/${page}`  
+    const root_url =`http://localhost:8080/admin/${section}`  
     for(const node of parentNode.children) node.classList.contains('active') && node !== self? node.classList.remove('active'): self.classList.add('active');
     
     const endpoint =`${root_url}${dataset.uri}`
