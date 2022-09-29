@@ -1,5 +1,6 @@
 {% set data = {} %}
 {% set placeholders = {} %}
+
 {% if form %}
     {% for field in form() %} 
         {% if field.name =='csrf_token'%} {{field()}}
