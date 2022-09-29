@@ -17,7 +17,7 @@
                 {% endfor %}
                 <td>
                     <div class="d-flex">
-                        {% if page  == 'academics' and section =='subjects'%} {% include 'url_for/subjects.html'   %} 
+                        {% if (page  == 'academics' and section =='subjects') or (page  == 'academics' and section =='exams')%} {% include 'url_for/subjects.html'   %} 
                         {% endif %}
                     </div>
                 </td>
