@@ -2,7 +2,7 @@ from flask import Flask
 from flask_mongoengine import MongoEngine
 from flask_wtf import CSRFProtect
 
-from .utils.constants import BASEDIR
+from .utils.constants.app import BASEDIR
 from .routes import subjects, admin, static, public
 
 def create_app(test_config:dict =None):
