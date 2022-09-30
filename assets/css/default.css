@@ -1,10 +1,11 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Oswald&display=swap'); */
 *, *::before, *::after{
     list-style: none;
     appearance: none;
     text-decoration: none; 
     margin: 0; padding: 0;
     box-sizing: border-box;
-    outline: none; border: 0;
+    outline: none; border: 0; 
 }
 
 html{
@@ -27,11 +28,16 @@ html{
     --sidebar-offset:180px;
     --rightbar-offset: 18rem;
     --box-shadow: 1px 1px 5px var(--color-light);
+    --theme-color: #334568;
+    --theme-accent: rgb(173, 84, 129);
+    --theme-accent-light: rgba(255, 105, 180, 0.075); 
 }
+
 
 html, body{
     min-height: 100%;
 }  
+
 
 .color-danger{
     color: var(--color-danger);
@@ -65,4 +71,7 @@ img{
 p{
     color: var(--color-dark);
     margin: 0;
+}
+textarea{
+    resize: none;
 }
