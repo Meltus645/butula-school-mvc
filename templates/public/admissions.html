@@ -1,0 +1,37 @@
+{% extends "public/base.html" %}
+{%block metadata%} <title>Butula School - New Student admissions</title>
+<meta name="title" content="Butula School - New Student admissions">
+<meta name="description" content="The best school for your child">
+<meta name="keywords" content="Butula, School, Busia, National Schools, Boy Schools, Busia County, Best Schools, Student admissions, form one, enroll student">
+<link rel="canonical" href="{{url_for('public.admissions')}}"> {%endblock metadata%}
+ 
+{% block content %} 
+<section class="container-fluid px-0 ps-rel static-crsl">
+  <img class="img-fluid d-block w-100 h-100" src="{{url_for('static', filename ='img/students.jpg')}}" alt="student">
+  <div class="overlay ps-abs d-flex justify-content-center align-items-center text-center text-light"><h1>New Student Admission</h1></div>
+</section>
+<section class="container py-5">
+    <div class="why-section">
+        <h2>Why study at Butula School</h2>
+          <p>Butula school is set in a welcoming accessible location in Butula town just beside the Bumala-Bungoma RD. Our school guarantees a serene and condusive learning environment as the school boasts of an elegant infrastructure designed to give the school its national status feel.</p>
+          <p>We use the normal government approved curriclumn but our expert teachers tinker with it a little bit to deliver the best content to our students. Our Library provides all the essential resources required for study life coaching or entertainment. The curriculumn is deemed the best in the county as it's ICT driven.Aall the notes, past papers, revision materials are posted on the school library portal and are available for students out of school for any reason.</p>
+          <p>All student attendance are tracked regularly and reports gnerated by class teachers. All our students school activities are closely monitored and guided by our various channels and discipline enforced where necessary to guarantee the best performance both in academics and humanity.</p>
+          <p>Our students are exposed to other very useful engagements other than academics. We provide them with life coaching sessions, allow them practise their democratic rights of vying for various students council posts and exercising their right of choosing their preferences freely. Our school also allows for student organization throughs clubs and societies patroned by teachers and we often expose them to contests with other schools and odcourse we emerge winners.</p>
+          <p>Sporting activities is part of our syllabus. That's how we identify and grow our students' talents . </p>
+          <p>Welcome to Butula School. Come See, Come join our community.</p>
+    </div>
+    <div class="selection text-blue pt-5">
+      <h2>Form one Selection </h2>
+      <p class="adm-statement "> Being a public school, form one admissions are done by the Ministry of Education. Vacancies are available on competitive basis. Those seeking admissions can  apply for a chance at our school by obtaining and filling an application form. Application forms are available from our school and are returned on the date of admission as specified on the application form upon payment of first term school fees.</p>
+      <p>School Fees can be paid to the School account:</p>
+      <div class="pt-5">
+          <div><b>Kenya Commercial Bank (KCB) ACCOUNT NO: 111019398756</b></div>
+          <div class="pt-1"><b>Cooperative Bank ACCOUNT NO: 111019398756</b></div>
+          <div class="pt-1"><b>Equity Bank ACCOUNT NO: 111019398756</b></div>
+          <div class="py-2"><b>MPESA PAYBILL NO:</b> 30345 <b>ACCOUNT NO:</b> (Student Name)</div>
+      </div>
+  </div> 
+  
+</section>
+{% endblock content %}
+  

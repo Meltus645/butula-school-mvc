@@ -1,15 +1,179 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-    <title>Butula School</title>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
+    <meta name="robots" content="index">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% include 'includes/styles.html' %}
-    <link rel="stylesheet" href="{{url_for('static', filename ='css/styles.css')}}">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    {%block metadata%} <title>Butula National School. Home of champions</title>
+    <meta name="title" content="Butula National School. Home of champions">
+    <meta name="description" content="Top performing national boys' school located in Busia County.">
+    <meta name="keywords" content="Butula, School, Busia, National Schools, Boy Schools, Busia County, Best Schools">
+    <link rel="canonical" href="{{url_for('public.home')}}">{%endblock metadata%}
+    <link rel="stylesheet" type ="text/css" href="{{url_for('static', filename ='css/vendor/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/default.css')}}">
+    <link rel="stylesheet" type ="text/css" href="{{url_for('static', filename ='css/styles.css')}}"> 
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico"/> 
 </head>
-<body>
-    <h1>Home Page</h1>
-    {% include 'includes/scripts.html' %}
+<body class="bg-white" id="bdy">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-theme py-2 home-nav">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Butula School</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link {{home}}" aria-current="page" href="{{url_for('public.home')}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link {{portal}}" href="{{url_for('public.portal')}}">Portal</a></li>
+                        <li class="nav-item"><a class="nav-link {{library}}" href="{{url_for('public.library')}}">Library</a></li>
+                        <li class="nav-item"><a class="nav-link {{admissions}}" href="{{url_for('public.admissions')}}">Admissions</a></li> 
+                        <li class="nav-item"><a class="nav-link {{about}}" href="{{url_for('public.about')}}">About</a></li>
+                        <li class="nav-item"><a class="nav-link {{contacts}}" href="{{url_for('public.contacts')}}">Contacts</a></li>
+                    </ul>
+                </div> 
+            </div>
+      </nav>
+    </header>
+    <main>
+      {% block content %} 
+      <section class="h-450 d-md-flex justify-content-start align-items-center hero-section py-5"> 
+          <div class="container text-blue hero-text-wrap"> 
+              <h1 class="hero-title">Welcome to<span> Butula National School</span></h1>
+              <p class="pb-2">We nurture and cherish the growth of knowledge, skills and values in individuals in order to develop their potentials, promote self actualization and to make them well integrated members of the society.</p>
+              <a href="{{url_for('public.about')}}" class="btn btn-danger">About Us</a> 
+      </div> 
+    </section>
+    <section class="container-fluid p-5 pt-4 text-blue">
+      <div class="d-md-flex flex-content-wrapper"> 
+          <div class="d-flex flex-column justify-content-between"> 
+              <h2 class="pb-3">New Admissions</h2>
+          <div class="text"> 
+            <p>Being a public school, form one admissions are done by the Ministry of Education. Vacancies are available on competitive basis. Those seeking admissions can apply for a chance at our school by obtaining and filling an application form. Application forms are available from our school and are returned on the date of admission as specified on the application form.</p>
+            <a href="{{url_for('public.admissions')}}" class="btn btn-success">Learn more</a>
+          </div>
+        </div>
+        <div class="img-wrapper"> 
+            <img src="{{url_for('static', filename ='img/butula-school-students.jpg')}}" alt="students in a session" class="img-fluid d-block h-100 w-100">
+        </div>
+      </div>  
+    </section> 
+    <section class="text-blue py-5 bg-light"> 
+      <h2 class="text-center pb-2">Our Promise</h2>
+      <div class="container-fluid px-5"> 
+      <div class="row text-blue">
+        <div class="col-md-6 col-lg-3 text-center">
+            <div class="circle mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
+              <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+              <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
+            </svg>
+          </div>
+          <h6 class="text-center">Academic Excellence</h6>
+          <p>We have always been on the rising trend in our KCSE results. Each year our students prove more promising.</p>
+        </div>
+        <div class="col-md-6 col-lg-3 text-center">
+          <div class="circle mb-2"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
+              <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z"/>
+            </svg>
+          </div>
+          <h6 class="text-center">Talent Growth</h6>
+          <p>Co-curricular activities are part of our syllabus. This way we are able to scout and grow our students' talents.</p>
+        </div> 
+        <div class="col-md-6 col-lg-3 text-center">
+            <div class="circle mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stoplights-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6 0a2 2 0 0 0-2 2H2c.167.5.8 1.6 2 2v2H2c.167.5.8 1.6 2 2v2H2c.167.5.8 1.6 2 2v1a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-1c1.2-.4 1.833-1.5 2-2h-2V8c1.2-.4 1.833-1.5 2-2h-2V4c1.2-.4 1.833-1.5 2-2h-2a2 2 0 0 0-2-2H6zm3.5 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM8 13a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                </svg></div>
+          <h6 class="text-center">Life Coaching</h6>
+          <p>The Butula school curriculumn provide for life skills lessons together with G&amp;C sessions to all our students.</p>
+        </div>
+        <div class="col-md-6 col-lg-3 text-center">
+          <div class="circle mb-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stoplights-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M6 0a2 2 0 0 0-2 2H2c.167.5.8 1.6 2 2v2H2c.167.5.8 1.6 2 2v2H2c.167.5.8 1.6 2 2v1a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-1c1.2-.4 1.833-1.5 2-2h-2V8c1.2-.4 1.833-1.5 2-2h-2V4c1.2-.4 1.833-1.5 2-2h-2a2 2 0 0 0-2-2H6zm3.5 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM8 13a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                </svg></div>
+                <h6 class="text-center">Student Innovation</h6>
+                <p>By exposing our students to science congress, news club, debate etc we intrigue their innovation capabilities </p>
+            </div>
+        </div>
+    </div>
+</section>
+    <section class="container-fluid text-blue py-5">
+        <div class="d-md-flex flex-content-wrapper"> 
+            <div class="img-wrapper"> 
+                <img src="{{url_for('static', filename ='img/gate.jpg')}}" alt="" class="img-fluid d-block h-100 w-100">
+            </div>
+            <div class="d-flex flex-column justify-content-between"> 
+                <h2 class="pb-3">About Us</h2>
+                <div class="text"> 
+            <p>Butula School has consistently been among the top performers in the KCSE exams. The school has continued to strengthen its performance in this exams and has hence been ranked the best school in Busia County. With our small-sized classes, we have maintained an appropriate teacher-students ratio to maximize on student learning. With our committed teachers, focused students and supportive parents & all operating as a single team, Butula school will continue to be on the upward trend in academics.</p>
+            <a href="{{url_for('public.about')}}" class="btn btn-danger">Read on</a>
+          </div>
+        </div>
+    </div>  
+</section> 
+
+    <section class="py-2 text-dark bg-light">
+        <div class="container">
+            {% if form %}
+        <form action="{{url_for('public.subscribe')}}" name="subsForm" method="POST" class="d-md-flex justify-content-between align-items-center" onsubmit="postForm(event, true)" data-cta="#subscribe" >
+            <div class="">
+                <h4 class="mb-md-0 h2">Get in touch</h4>
+                <p>Subscribe to our newsletter for latest news and updates.</p>
+            </div>
+            <div class="input-group news-letter-field">
+                {% for field in form() %} 
+                {{field(class ="form-control", placeholder="Enter email address")}} 
+                {% endfor %} <button class="btn bg-theme text-light py-2" type="submit" id="subscribe">Subscribe</button></div>
+            </form> 
+            {%endif%}
+            <div >
+          </div>
+        </div>
+    </section>  
+  {% endblock content %}
+</main>
+<footer>
+    <section class="py-5 pb-3 bg-theme">
+        <div class="container">
+                <div class="row text-center text-md-start">
+                    <div class="img-wrap col-sm-3"> 
+                        <img class="img-fluid ms-md-5" src="{{url_for('static', filename ='img/icon.png')}}" alt="">
+                    <div class="light-links">{% include "includes/sociallinks.html" %} </div>
+                </div>
+                <div class="img-wrap col-sm-3">  
+                    <ul class="nav flex-column light-links"> 
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('public.home')}}">Home</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('public.portal')}}">Portal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('public.library')}}">Library</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('public.admissions')}}">Admissions</a></li>  
+                    </ul>
+                  </div>
+                  <div class="img-wrap col-sm-3">  
+                    <ul class="nav flex-column light-links">   
+                      <li class="nav-item"><a class="nav-link" href="{{url_for('public.about')}}">About</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{url_for('public.contacts')}}">Contacts</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{url_for('public.policy')}}">Privacy policy</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{url_for('public.terms')}}">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                  <div class="img-wrap col-sm-3"> 
+                    <ul class="nav flex-column light-links"> 
+                      <li class="nav-item"><a class="nav-link" href="https://www.knec.ac.ke/" target="_blank" rel="nofollow">KNEC</a></li> 
+                      <li class="nav-item"><a class="nav-link" href="https://kuccps.net/" target="_blank" rel="nofollow">KUCCPS</a></li> 
+                      <li class="nav-item"><a class="nav-link" href="https://www.kuccps.net/index.php?q=content/career-guidance" target="_blank" rel="nofollow">Career Guidance</a></li> 
+                      <li class="nav-item"><a class="nav-link" href="https://www.children.org/child-protection-policy" target="_blank" rel="nofollow">Child protection policy</a></li>   
+                    </ul> 
+                  </div> 
+                </div>
+                <hr class="bg-light">
+                <div class="text-center text-light ">{{cpyr | safe}}</div>
+            </div>
+        </section>
+    </footer> 
+    {% include 'includes/scripts.html'   %}
+    <!-- <script src="/pixel.js" defer></script>  -->
 </body>
 </html>

@@ -1,0 +1,152 @@
+{% extends "public/base.html" %}
+{% block title %}Students{% endblock title %}
+{% block content %}
+<section class="container-fluid px-0  static-crsl">   
+  <div id="bs-carousel" class="carousel slide ps-rel" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{url_for('static', filename ='img/students.jpg')}}" class="d-block w-100 img-fluid h-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{{url_for('static', filename ='img/students2.jpg')}}" class="d-block w-100 img-fluid h-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{{url_for('static', filename ='img/handball.jpg')}}" class="d-block w-100 img-fluid h-100" alt="...">
+      </div>
+    </div>
+    <div class="overlay ps-abs d-flex justify-content-center align-items-center"><h1 class="text-light">Students' Welfare & organization</h1></div>
+  </div>
+</section>
+<section class="container py-3">
+  <div class="row">
+    <div class="col-md-7">
+      <h4>School Anthem</h4>
+      <p>We go forwad in education, we the young Butula students, we call it BTL because we always say yes to Jesus Christ our loving savior. Lets work together to imporove our school with strength, hardwork and unity, (and unity) let's work together to improve our school with strenght, hardwork and unity.</p>
+    </div>
+    <div class="col-md-5">
+      <h4>The President</h4>
+      <p>Welcome to Butula School students fraternity, we are geared towards exellence in our talents and skills, our motto is to be always prepared and so, we are!</p>
+    </div>
+  </div>
+</section>
+<section class="container-fluid py-3">
+  <h3 class="text-center pb-3">Student Organization</h3> 
+  <div class="row gy-4">
+    <div class="col-sm-6">
+        <div class="card" > 
+            <div class="card-body">
+            <h5 class="card-title">President</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card" > 
+            <div class="card-body">
+            <h5 class="card-title">Prime Minister</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card" > 
+            <div class="card-body">
+            <h5 class="card-title">Academic Secretary</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card" > 
+            <div class="card-body">
+              <h5 class="card-title">Class Ministers</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<section class="container-fluid py-3">
+  <h3 class="text-center pb-3">Games and Sports</h3>
+  <div class="row gy-4">
+    <div class="col-sm-6">
+        <div class="card" > 
+            <div class="card-body">
+            <h5 class="card-title">Football</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card" > 
+            <div class="card-body">
+            <h5 class="card-title">Hockey</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card" > 
+            <div class="card-body">
+            <h5 class="card-title">Scouts</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card" > 
+            <div class="card-body">
+            <h5 class="card-title">Debates Club</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+            </div>
+        </div>
+    </div>
+</div> 
+</section>
+<section class="container-fluid py-3 bg-theme-accent-light text-blue">
+  <h3 class="text-center pb-3">Clubs and Societies</h3>  
+  <div id="bs-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">   
+          <div class="col-md-6">  
+            <h3 class="pb-3">YCS</h3> 
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque odio sint, ut, illum velit, ea non quas minima sed consequatur molestias. Delectus officiis, adipisci natus, ratione deserunt cumque odit iusto veritatis aspernatur asperiores fugit iure accusantium illum hic laudantium fuga quae dolores eum doloremque! Voluptas iusto commodi laboriosam repellat nemo?</p>
+          </div>
+          <div class="col-md-6"> 
+            <img src="{{url_for('static', filename ='img/students.jpg')}}" class="d-block w-100 img-fluid h-custom" alt="...">
+          </div>
+        </div> 
+      </div> 
+      <div class="carousel-item">
+        <div class="row"> 
+          <div class="col-md-6">  
+            <h3 class="pb-3">CU</h3> 
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque odio sint, ut, illum velit, ea non quas minima sed consequatur molestias. Delectus officiis, adipisci natus, ratione deserunt cumque odit iusto veritatis aspernatur asperiores fugit iure accusantium illum hic laudantium fuga quae dolores eum doloremque! Voluptas iusto commodi laboriosam repellat nemo?</p>
+          </div>
+          <div class="col-md-6"> 
+            <img src="{{url_for('static', filename ='img/students.jpg')}}" class="d-block w-100 img-fluid h-custom" alt="...">
+          </div>
+        </div> 
+      </div> 
+      <div class="carousel-item">
+        <div class="row"> 
+          <div class="col-md-6">  
+            <h3 class="pb-3">Scout</h3> 
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque odio sint, ut, illum velit, ea non quas minima sed consequatur molestias. Delectus officiis, adipisci natus, ratione deserunt cumque odit iusto veritatis aspernatur asperiores fugit iure accusantium illum hic laudantium fuga quae dolores eum doloremque! Voluptas iusto commodi laboriosam repellat nemo?</p>
+          </div>
+          <div class="col-md-6"> 
+            <img src="{{url_for('static', filename ='img/students.jpg')}}" class="d-block w-100 img-fluid h-custom" alt="...">
+          </div>
+        </div> 
+      </div> 
+    </div> 
+  </div>  
+</section>
+<section class="container py-3">
+  <h3 class="text-center">Quotes</h3> 
+</section>
+<section class="container py-3">
+  <h3 class="text-center">Pictorial</h3> 
+</section>
+{% endblock content %}

@@ -1,0 +1,127 @@
+{% extends "public/base.html" %}
+{%block metadata%} <title>Butula School- About our school</title>
+<meta name="title" content="Butula School- About our school">
+<meta name="description" content="Our story, motto, vision, mission,achievements, facilities as a school">
+<meta name="keywords" content="Butula, School, Busia, National Schools, Boy Schools, Busia County, Best Schools, about butula school, school motto, school vision, schoo mission, school achievements, school faq">
+<link rel="canonical" href="{{url_for('public.about')}}"> {%endblock metadata%}
+{% block content %}
+<section class="h-450 ps-rel">
+  <img src="{{url_for('static', filename ='img/students.jpg')}}" alt="" class="img-fluid w-100 h-100 d-block hero-img">
+  <div class="overlay ps-abs d-flex justify-content-center align-items-center">
+    <div class=""> 
+      <h1 class="text-white hero-title">We Are The <span>Western Hawks</span></h1> 
+  </div> 
+</section>
+<section id="history" class="container-fluid p-5">
+  <div class="grid-content">
+    <h4 class="text-muted grid-content-title">Our Story</h4>
+    <h5 class="">How it all started in 1964</h5>
+    <div class="right-content">
+      <p>Butula School was established in 1964 with a student population of 45 who started their studies at St. Paul’s High School, Amukura in Form 1B. The class was relocated to the present Butula Boys High School in 1965 at Form 2 with the first Principal being Mr. Paul Joseph who was their Deputy Principal.</p>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure quaerat, hic nostrum laudantium vitae laborum ea facere doloribus amet dolore tempore magni, enim blanditiis accusantium quisquam sapiente? Odio, aspernatur minus.</p>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure quaerat, hic nostrum laudantium vitae laborum ea facere doloribus amet dolore tempore magni, enim blanditiis accusantium quisquam sapiente? Odio, aspernatur minus.</p>
+    </div>
+  </div>
+  <div class="grid-content">
+    <h4 class="text-muted grid-content-title">Mr. Ouma Daniel</h4>
+    <h5 class="">Our School Principal</h5> 
+    <div class="right-content">
+       <blockquote>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae qui velit temporibus molestiae voluptate quas nam nobis fuga iusto, nesciunt facilis accusantium vel ut possimus sequi dolorem magni perspiciatis impedit!</blockquote>
+    </div>
+  </div>
+  <div class="grid-content">
+    <h5 class="">Motto</h5>
+    <p>Always Prepared</p>
+  </div>
+  <div class="grid-content">
+    <h5 class="">Vision</h5>
+    <p>To be an academic centre of excellence committed to education and development.</p>
+  </div>
+  <div class="grid-content">
+    <h5 class="">Mission</h5>
+    <p>To nurture and cherish the growth of knowledge, skills and values in individuals in order to develop their potentials, promote self actualization and to make them well integrated members of the society.</p>
+  </div>
+  <div class="grid-content">
+    <h5 class="">Achievements</h5>
+    <div class="right-content">
+        <div id="academics" class="grid-content lg-left">
+          <h4 class="grid-content-title">Academics</h4>
+          <p>Butula School has consistently been among the top performers in the KCSE exams. The school has continued to strengthen its performance in this exams and has hence been ranked the best school in Busia County.  With our small-sized classes, we have maintained an appropriate teacher-students ratio to maximize on student learning. With our committed teachers, focused students and supportive parents &amp; all operating as a single team, Butula school will continue to be on the upward trend in academics.</p>
+          <div class="grid-img"> 
+            <img src="{{url_for('static', filename ='img/students2.jpg')}}" alt="students rejoicing" class="img-fluid w-100 h-100 d-block">
+          </div>
+        </div>
+        <div id="co-curricular" class="grid-content lg-right">
+          <h4 class="grid-content-title">Co-Curricular</h4>
+          <div class="grid-img"> 
+            <img src="{{url_for('static', filename ='img/handball.jpg')}}" alt="sporting students" class="img-fluid w-100 h-100 d-block">
+          </div>
+          <p>We are glad as a school that we have managed to discover and progressively grow our students talents. We are bold at this because our students have always outshined our participants in various co-curricular activities frequently reaching the national level in our engagements. These engagements include: Sports, Debates, Drama Festivals, Music and so on.</p>
+        </div>
+    </div>
+  </div>
+  <div class="grid-content">
+    <h5 class="">Facilities</h5>
+    <div class="right-content">
+        <p>Butula school boasts of elegant infrastructure designed to give the school its national status feel. We have an ultra-modern extensive and well equipped science laboratory, a full stocked, active, ICT driven and extensive research center,the library, 28 air conditioned class rooms, a modern dining hall, a beckery, one football field, a bascket ball court two indoor games courts and modern dormitories.</p>
+    </div>
+  </div>
+</section> 
+<section class="pt-5">
+  <div class="container-fluid text-blue">
+      <h3 class="text-center ">Frequent Questions</h3>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                What is the status of the school?
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                How does the school perform generally?
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                What is the school slogan? 
+              </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                  How can one secure a chance at Butula School? 
+                </button>
+              </h2>
+              <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                  Where is the school located?  
+                </button>
+              </h2>
+              <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+              </div>
+            </div>
+        </div>
+  </div>
+</section> 
+{% endblock content %}

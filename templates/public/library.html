@@ -1,0 +1,227 @@
+{% extends "public/base.html" %}
+{%block metadata%} <title>Butula School - Library</title>
+<meta name="title" content="Butula School - Library">
+<meta name="description" content="Online School libray. Students can access all study resources even if out of school">
+<meta name="keywords" content="Butula, School, Busia, National Schools, Boy Schools, Busia County, Best Schools,  Library, academics, research, school library, butula school libray">
+<link rel="canonical" href="{{url_for('public.library')}}"> {%endblock metadata%} 
+{% block content %}
+<section class="container-fluid h-450 bg-light">
+<div class="row">
+    <div class="col-md-2">
+        <div>Resources</div>
+        <ul class="nav flex-column ">
+            <li class="nav-item"><a class="nav-link" href="#">Recent</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Books</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Journals</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Past Papers</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Revision</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Motivation</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">All</a></li>
+        </ul>
+        <form class="mt-3" action="" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control" name="q" placeholder="Search resource..." aria-label="Search" aria-describedby="button-addon2">
+                <button class="btn btn-secondary" type="submit" id="button-addon2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg></button>
+            </div>
+         </form> 
+    </div>
+    <div class="col-md-10 p-0 hero-img h-450">
+        <img class="img-fluid d-block w-100" src="{{url_for('static', filename ='img/lib.jpg')}}" alt="Library">
+    </div>
+</div>
+</section> 
+<section class="container-fluid pt-3">
+    <h1 class="text-center">The Library</h1> 
+    <p class="lead pe-0">Welcome to the library, the busiest, quietiest and most accessible facility in our school. This is our knowledgebase and where our reading culture is cultivated. The library extends our school learning and research programes beyond the school gates through this online platform where we engage our students through various materials and resources updated on the platform frequently.</p>
+</section>
+<section class="container-fluid bg-theme-accent-light text-dark pt-3">
+    <h3 class="pb-2 text-center" >Recent Uploads</h3>
+    <div class="row gy-4">
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Reproduction</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Bonds</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Bonds</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Bonds</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Bonds</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Bonds</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              
+            </div>
+        </div>
+</section>
+<section class="container-fluid py-3 gy-4">
+    <h3 class="text-center">Library Guide</h3>
+    <div class="row py-3 px-0">
+        <div class="col-sm-4">
+            <h5>Opening Hours</h3>
+            <div>The School Library operates under the schedule below:</div>
+            <ul> 
+                <li>Mon-Fri 6:00 AM - 10:00 PM</li>
+                <li>Sat-Sun 7:00 AM - 7:00 PM</li>
+                <li>Holidays (Closed)</li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h5>Services</h3>
+            <div>Services offered at our desk include:</div>
+            <ul> 
+                <li>Book lending</li>
+                <li>Uploading content</li>
+                <li>Conducting researches</li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h5>Contacts</h3> 
+            <div>For more information reach us through:</div>
+            <ul> 
+                <li>Phone: 071234567</li>
+                <li>Email: lib@butulaschool.ac.ke</li>
+                <li>Post:  Private Bag, 100-100 Butula</li>
+            </ul>
+        </div>
+        
+    </div>
+</section>
+<section class="container-fluid pb-3">
+    <h3 class="text-center pb-3">Collection</h3>
+     <div class="row gy-4">
+        <div class="col-sm-4">
+            <div class="card" >
+                <div class="card-header"> Academic </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Past Papers</li>
+                  <li class="list-group-item">Revision</li>
+                  <li class="list-group-item">Books</li>
+                </ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" >
+                <div class="card-header">Coaching</div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Quotes</li>
+                  <li class="list-group-item">Journals</li>
+                  <li class="list-group-item">Articles</li>
+                </ul>
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" >
+                <div class="card-header">Entertainment</div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Newspapers</li>
+                  <li class="list-group-item">Story Books</li>
+                  <li class="list-group-item">Journals</li>
+                </ul>
+              </div>
+        </div>
+    </div>
+</section> 
+<section class="py-5">
+    <div class="container-fluid">
+        <h3 class="text-center">About us</h3>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Is the School Library Available to the public?
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  Does the school rent out online resources?
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  Are files uploaded on the system safe of viruses? 
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                    What is the the legitimacy of your resource sources? 
+                  </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                    Why did you set up an online library? 
+                  </button>
+                </h2>
+                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                </div>
+              </div>
+          </div>
+    </div>
+    </section>
+{% endblock content %}
