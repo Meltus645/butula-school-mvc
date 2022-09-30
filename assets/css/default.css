@@ -31,6 +31,8 @@ html{
     --theme-color: #334568;
     --theme-accent: rgb(173, 84, 129);
     --theme-accent-light: rgba(255, 105, 180, 0.075); 
+    --blue-light: #7380ec;
+    --light-gray: rgba(132, 139, 200, .18); 
 }
 
 
@@ -56,6 +58,24 @@ html, body{
 .bg-danger{
     background-color: var(--color-danger)!important;
 }
+.text-theme{
+    color: var(--theme);
+}
+.text-theme-accent{
+    color: var(--theme-accent)
+}
+.bg-theme-accent-light{
+    background-color: rgba(255, 105, 180, 0.075); 
+}
+.bg-theme-accent{
+    background-color: var(--theme-accent);
+}
+.bg-white{
+    background-color: var(--white);
+}
+.bg-theme{
+    background-color: var(--theme-color);
+}
 .bg-success{
     background-color: var(--color-success)!important;
 }
@@ -74,4 +94,28 @@ p{
 }
 textarea{
     resize: none;
+}
+.btn-svg svg{
+    width: 14px; height: 14px; 
+}
+.btn-svg-green svg{
+    fill: green;
+}
+.btn-svg-orange svg{
+    fill: orange;
+}
+.btn-svg-red svg{
+    fill: rgb(185, 37, 37);
+}
+.btn-svg-blue svg{
+    fill: rgb(49, 49, 214);
+}
+.btn-svg-dodger svg{
+    fill: rgb(20, 127, 233);
+}
+.btn-svg-purple svg{
+    fill: purple;
+}
+.btn-svg-red:hover svg{
+    fill: rgb(255, 0, 179);
 }
