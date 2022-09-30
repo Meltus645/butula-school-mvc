@@ -1,20 +1,13 @@
-from flask_mongoengine.wtf import model_form 
-
-from src.models.classesModel import ClassesModel
-from src.models.examsModel import ExamsModel
-from src.models.resourcesModel import ResourcesModel
-from src.models.schoolCalendarModel import SchoolCalendarModel
-from src.models.subjectsModel import SubjectsModel 
-from src.models.timtableModel import TimetableModel
-
+from flask_mongoengine.wtf import model_form   
+from src.models import ClassesModel, ExamsModel, ResourcesModel, SchoolCalendarModel, SubjectsModel, TimetableModel
 
 ACADEMIC_SECTIONS =['e-notes', 'subjects', 'exams', 'classes','time-table', 'school-calendar'] 
 
 ACADEMIC_FIELDS ={
     'subjects': ['code', 'name'],
-    'e-notes': [],
+    'e-notes': ['topic', 'subject', 'views', 'downloads', 'author', 'time_uploaded'],
     'exams': ['exam_name', 'exam_type'],
-    'time-table': [],
+    'time-table': ['form', 'purpose', 'file'],
     'school-calendar': [],
     'classes': ['form', 'stream']
 }
@@ -38,16 +31,16 @@ ACADEMIC_MODELS ={
     'subjects': SubjectsModel,
     'e-notes': ResourcesModel,
     'exams': ExamsModel,
-    'time-table': None,
+    'time-table': TimetableModel,
     'school-calendar': SchoolCalendarModel,
     'classes': ClassesModel
 }
 
 ACADEMIC_FORMS ={
-    'subjects': SubjectForm,
-    'e-notes': None,
-    'exams': ExamForm,
-    'time-table': None,
-    'school-calendar': None,
-    'classes': ClassForm
+    'subjects': model_form(SubjectsModel),
+    'e-notes': model_form(ResourcesModel),
+    'exams': model_form(ExamsModel),
+    'time-table': model_form(TimetableModel),
+    'school-calendar': model_form(SchoolCalendarModel),
+    'classes': model_form(ClassesModel)
 }

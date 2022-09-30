@@ -1,6 +1,5 @@
-from src.forms.studentsForm import StudentForm
-from src.forms.staffForm import StaffForm
-from .app import ACTIONS
+from flask_mongoengine.wtf import model_form
+from src.models import StaffModel, StudentsModel
 
 USER_TYPES =['students', 'staff']
 
@@ -20,6 +19,6 @@ USER_PLACEHOLDERS ={
 }
 
 USER_FORMS ={
-    'students': StudentForm,
-    'staff': StaffForm
+    'students': model_form(StudentsModel),
+    'staff': model_form(StaffModel)
 }
