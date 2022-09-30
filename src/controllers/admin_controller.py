@@ -1,9 +1,10 @@
-from flask import request, render_template, redirect, url_for, jsonify  
-from .academic_service_controller import GET_ACADEMICS, POST_ACADEMICS, PUT_ACADEMICS, DELETE_ACADEMICS
-from src.utils.constants.academics import ACADEMIC_FIELDS, ACADEMIC_FORMS, ACADEMIC_PLACEHOLDERS, ACADEMIC_SECTIONS 
+from flask import request, render_template, redirect, url_for, jsonify   
+from src.utils.constants.academics import ACADEMIC_FIELDS, ACADEMIC_FORMS, ACADEMIC_PLACEHOLDERS, ACADEMIC_SECTIONS, ACADEMIC_MODELS 
 from src.utils.constants.app import ACTIONS
 from src.utils.constants.users import USER_FORMS, USER_TYPES
+from src.services.requests_service import RequestsService
 from flask_wtf import FlaskForm
+
 
 def dashboard():
     return render_template('admin/base.html', page="dashboard")
@@ -36,7 +37,9 @@ def academics(section ='e-notes', action ='list', id:str =None):
     section =section.lower()
     action =action.lower() 
     if not section in ACADEMIC_SECTIONS or not action in ACTIONS: return redirect(url_for('admin.error_404'))
-    
+
+    model =ACADEMIC_MODELS[section]
+    service =RequestsService(model=model)
     params =request.args
     page ='academics' 
     data =None
@@ -46,26 +49,31 @@ def academics(section ='e-notes', action ='list', id:str =None):
      
 
     if action =='list': 
-        data =GET_ACADEMICS[section]()   
+        data, status_code =service.get()   
         if params.get('init') =='app': return render_template('list.html', data=data, fields =fields, section =section, page =page, action =action)
 
     if action =='new':    
-        if request.method =='POST':  return POST_ACADEMICS[section]()  
+        if request.method =='POST':  
+            response, status_code =service.post()
+            return response 
         if params.get('init') =='app': return render_template('form.html', form =form, section =section, page =page, action =action, placeholders =placeholders)
 
     if action =='edit':
-        if request.method =='POST': return PUT_ACADEMICS[section](id=id)   
-        data =GET_ACADEMICS[section](id=id)
+        if request.method =='POST': 
+            response, status_code =service.put(id=id)
+            return response   
+
+        data, status_code =service.get(id=id)
         if params.get('init') =='app': 
             return render_template('form.html', form =form, section =section, page =page, action =action, placeholders =placeholders, data=data)
 
     if action =='view': 
-        data =GET_ACADEMICS[section](id=id)
+        data, status_code =service.get(id=id)
         if params.get('init') =='app': return render_template('list.html')
 
     if action == 'delete':
-        response =DELETE_ACADEMICS[section](id=id)
-        if response['detail'] ==204: return jsonify({'deleted': True})
+        response, status_code =service.delete(id=id)
+        if status_code ==204: return jsonify({'deleted': True})
         return jsonify({'deleted': False, 'detail': response['detail']})
 
     return render_template('academics.html', page =page, section =section, action =action, form =form, data =data, fields =fields, placeholders =placeholders)
