@@ -3,7 +3,7 @@ from flask_mongoengine import MongoEngine
 from flask_wtf import CSRFProtect
 
 from .utils.constants.app import BASEDIR
-from .routes import subjects, admin, static, public
+from .routes import admin, static, public
 
 def create_app(test_config:dict =None):
      
@@ -16,8 +16,7 @@ def create_app(test_config:dict =None):
     MongoEngine(app=app) 
 
     app.register_blueprint(static, url_prefix ='/')   
-    app.register_blueprint(public, url_prefix ='/')   
-    app.register_blueprint(subjects, url_prefix ='/subjects')   
+    app.register_blueprint(public, url_prefix ='/')      
     app.register_blueprint(admin, url_prefix ='/admin')   
     
     return app
