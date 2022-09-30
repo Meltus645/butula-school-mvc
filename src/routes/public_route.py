@@ -1,8 +1,16 @@
 from flask import Blueprint
-from src.controllers.public_controller import home
+from src.utils.constants.app import BASEDIR
+
+from src.controllers.public_controller import home, library, admissions, about, contacts, subscribe, policy, portal, terms
 
 public =Blueprint('public', __name__) 
 
-public.route('')(home)
-public.route('index.html')(home)
-public.route('home')(home)
+public.route('')(home) 
+public.route('/library')(library) 
+public.route('/admissions')(admissions) 
+public.route('/portal')(portal) 
+public.route('/about')(about) 
+public.route('/contacts')(contacts) 
+public.route('/subscribe', methods =['POST'])(subscribe) 
+public.route('/privacy-policy')(policy) 
+public.route('/terms-and-terms')(terms) 
