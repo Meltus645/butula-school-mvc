@@ -4,7 +4,7 @@ from .rolesModel import RolesModel
 
 class StaffModel(Document):
     name =StringField(regex=r'^[a-zA-Z]+$', required =True, max_length=128) 
-    staffid =StringField(regex=r'^[a-zA-Z]+$', required =True, max_length=128) 
+    staffid =StringField(regex=r'^[0-9]+$', required =True, max_length=128) 
     phone =StringField(regex=r'^[a-zA-Z]+$', required =True, unique =True, max_length=13)
     email =DictField(required =True) #{'address': '', 'verified': False} 
     gender =StringField(required =True, max_length=6, regex=r'^[a-zA-Z]+$')
@@ -23,3 +23,7 @@ class StaffModel(Document):
 
     def save(self, force_insert=False, validate=True, clean=True, write_concern=None, cascade=None, cascade_kwargs=None, _refs=None, save_condition=None, signal_kwargs=None, **kwargs):
         return super().save(force_insert, validate, clean, write_concern, cascade, cascade_kwargs, _refs, save_condition, signal_kwargs, **kwargs)
+
+    
+    def __str__(self):
+        return f'{self.name}'

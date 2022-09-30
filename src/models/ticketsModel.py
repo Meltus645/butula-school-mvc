@@ -11,3 +11,7 @@ class TicketsModel(Document):
     received =DateTimeField(required=False, default=datetime.now)
 
     meta ={'collection': 'ticket'}
+
+
+    def __str__(self):
+        return f'{self.holder_name}'

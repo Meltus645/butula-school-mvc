@@ -4,7 +4,7 @@ from .subjectsModel import SubjectsModel
 
 class StudentsModel(Document):
     name =StringField(regex=r'^[a-zA-Z]+$', required =True, max_length=128) 
-    birth_certificate_number =StringField(required =True, max_length=16, unique =True)
+    birth_certificate_number =StringField(required =True, max_length=16, unique =True, regex=r'^[0-9]+$')
     gender =StringField(required =False, max_length=6, regex=r'^[a-zA-Z]+$', default ='Male') 
     phone =StringField(regex=r'^[a-zA-Z]+$', required =True, unique =True, max_length=13) 
     admission_number =IntField(required =True, unique =True)
@@ -18,3 +18,9 @@ class StudentsModel(Document):
         'collection': 'student',
         'indexes': [{'fields': ['$name', '$admission_number'], 'default_language': 'english'}]
     } 
+
+    def save(self, force_insert=False, validate=True, clean=True, write_concern=None, cascade=None, cascade_kwargs=None, _refs=None, save_condition=None, signal_kwargs=None, **kwargs):
+        return super().save(force_insert, validate, clean, write_concern, cascade, cascade_kwargs, _refs, save_condition, signal_kwargs, **kwargs)
+    
+    def __str__(self):
+        return f'{self.name}'

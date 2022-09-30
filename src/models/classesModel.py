@@ -5,3 +5,6 @@ class ClassesModel(Document):
     stream =StringField(required =True, regex=r'^[A-Za-z]+$')  
 
     meta ={'collection': 'class', 'indexes': [{'fields': ['$form', '$stream'], 'default_language': 'english'}]}
+
+    def __str__(self):
+        return f'{self.form} {self.stream}'

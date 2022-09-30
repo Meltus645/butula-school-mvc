@@ -6,3 +6,7 @@ class NewsLetterSubcribersModel(Document):
     joined =DateTimeField(required=False, default=datetime.now)
 
     meta ={'collection': 'newsletter_subscriber'}
+
+
+    def __str__(self):
+        return f'{self.email}'

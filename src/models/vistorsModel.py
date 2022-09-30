@@ -12,3 +12,6 @@ class VistorsModel(Document):
     first_visit =DateTimeField(required =False, default=datetime.now())
 
     meta ={'collection': 'visitor'} 
+
+    def __str__(self):
+        return f'{self.client_name}'
