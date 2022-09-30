@@ -1,20 +1,33 @@
-from flask import render_template 
+from flask import render_template, request 
+from src.models import TicketsModel
+from flask_mongoengine.wtf import model_form
+
 
 def home(): 
     return render_template('public/base.html')
 
-def portal(): pass
+def portal(): 
+    return  {}
 
-def library(): pass
+def library(): 
+    return render_template('public/library.html')
 
-def admissions(): pass
+def admissions(): 
+    return render_template('public/admissions.html')
 
-def about(): pass
+def about(): 
+    return render_template('public/about.html')
 
-def contacts(): pass
+def contacts(): 
+    if request.method =='POST': pass 
+   
+    return render_template('public/contacts.html',  form =model_form(TicketsModel))
 
-def subscribe(): pass
+def subscribe(): 
+    return {} 
 
-def policy(): pass
+def policy(): 
+    return render_template('public/policy.html')
 
-def privacy(): pass
+def terms(): 
+    return render_template('public/terms.html')
