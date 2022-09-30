@@ -1,8 +1,7 @@
 from mongoengine import Document, StringField, IntField
 
 class ClassesModel(Document):
-    form =IntField(required =True)
-    stream =StringField(required =True) 
-    max_number_of_students =IntField(required =False)
+    form =IntField(required =True, min_value=1, max_value=6)
+    stream =StringField(required =True, regex=r'^[A-Za-z]+$')  
 
-    meta ={'collection': 'class'}
+    meta ={'collection': 'class', 'indexes': [{'fields': ['$form', '$stream'], 'default_language': 'english'}]}
