@@ -15,9 +15,9 @@ def create_app(test_config:dict =None):
     CSRFProtect(app=app)
     MongoEngine(app=app) 
 
+    app.register_blueprint(admin, url_prefix ='/admin')   
     app.register_blueprint(static, url_prefix ='/')   
     app.register_blueprint(public, url_prefix ='/')      
-    app.register_blueprint(admin, url_prefix ='/admin')   
     
     return app
  
