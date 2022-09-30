@@ -1,12 +1,11 @@
-from src.forms.subjectForm import SubjectForm  
-from src.forms.examForm import ExamForm
-from src.forms.classForm import ClassForm
+from flask_mongoengine.wtf import model_form 
 
 from src.models.classesModel import ClassesModel
 from src.models.examsModel import ExamsModel
 from src.models.resourcesModel import ResourcesModel
 from src.models.schoolCalendarModel import SchoolCalendarModel
 from src.models.subjectsModel import SubjectsModel 
+from src.models.timtableModel import TimetableModel
 
 
 ACADEMIC_SECTIONS =['e-notes', 'subjects', 'exams', 'classes','time-table', 'school-calendar'] 
