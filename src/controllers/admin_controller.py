@@ -75,14 +75,20 @@ def academics(section ='e-notes', action ='list', id:str =None):
         response, status_code =service.delete(id=id)
         if status_code ==204: return jsonify({'deleted': True})
         return jsonify({'deleted': False, 'detail': response['detail']})
-
+     
     return render_template('academics.html', page =page, section =section, action =action, form =form, data =data, fields =fields, placeholders =placeholders)
 
-def subscribers(): pass
+def subscribers(): 
+    page  ='subscribers'
+    return render_template('maillist.html', page=page)
 
-def settings(): pass
+def support(): 
+    page  ='support'
+    return render_template('support.html', page=page) 
 
-def support(): pass 
+def settings(): 
+    page  ='settings'
+    return render_template('settings.html', page=page)
 
 def error_404():
     return render_template('404.html')
