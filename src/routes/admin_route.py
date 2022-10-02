@@ -15,4 +15,8 @@ admin.route('/manage/<string:type>/<string:action>', methods =['GET', 'POST'])(u
 admin.route('/manage/<string:type>/<string:action>/<string:section>')(users)
 # admin.route('/manage/<string:type>/<string:action>/<string:id>', methods =['GET', 'POST', 'PUT'])(users)
 # admin.route('/manage/<string:type>/<string:action>/<string:id>/<string:section>')(users)
+admin.route('/mailing-list')(subscribers)
+admin.route('/support')(support)
+admin.route('/settings')(settings)
 admin.route('/404')(error_404)
+admin.route('/403')(error_403)
