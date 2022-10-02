@@ -1,16 +1,13 @@
-<div class="view-tabs">
-    <div class="d-flex tab-labels">
-        <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Media Upload</button> 
-        <button type="button" data-uri="/news-events" class="btn-tab {% if section =='news-events' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">News &amp; Events</button> 
-        <button type="button" data-uri="/school-calendar" class="btn-tab {% if section =='school-calendar' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">School Calendar</button> 
-        <button type="button" data-uri="/fee-structure" class="btn-tab {% if section =='fee-structure' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Fee Structure</button> 
-        <button type="button" data-uri="/notice-board" class="btn-tab {% if section =='notice-board' %}active{%endif%}" onclick="activateTab(this, '{{page}}/view');">Notice Board</button> 
+{% extends 'base.html' %}
+{% block content %} 
+    <div class="tabs">
+        <div class="d-flex tab-labels">
+            <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this);">All</button> 
+            <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this);">Unread</button> 
+            <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this);">Read</button> 
+        </div>
+        <div class="tab-content pt-4" id="tabContent">
+            {% include 'list.html'   %} 
+        </div>
     </div>
-    <div class="view-tab-content pt-4" id="viewTabContent">
-        {% if section =='bio' %} {% include 'bio.html'   %}
-        {% elif section =='performance' %} {% include 'performance.html'   %}
-        {% elif section =='subjects' %} {% include 'subjects.html'   %}
-        {% elif section =='transcript' %} {% include 'transcript.html'   %}
-        {% endif %} 
-    </div>
-</div>
+{% endblock %}
