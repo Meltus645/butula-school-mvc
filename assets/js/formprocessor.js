@@ -1,4 +1,28 @@
 'use strict';
+
+const previewFile =(file, viewer) =>{
+    const previeImage =self.querySelector('img'); 
+    !file? viewer.setAttribute('src', '/assets/img/pp.jpg'):null;
+    fileToBase64(fileList[0]).then(({file}) => previeImage.src =file).catch(error => alert(error)) 
+
+}
+const openFile = self =>{ // open file functionality  
+    const file =document.forms[self.getAttribute('data-form')].querySelector(self.getAttribute('data-click')); file.click();  
+    file.addEventListener('change',  ({target}) =>{
+        self.removeAttribute('title');
+        const fileList =target.files;
+        if(fileList.length >0) {
+            const filename = fileList[0].name && fileList[0].name !='' ? fileList[0].name: 'No file chosen'
+            const fileLabel =target.parentNode.querySelector(file.getAttribute('data-file-label')); 
+            if (filename.length <=15) fileLabel.textContent =filename;
+            else{
+                fileLabel.textContent =`${filename.slice(0,6)}...${filename.slice(filename.length-6,filename.length)}`;
+                self.setAttribute('title', filename);
+            }  
+        } 
+    })
+}
+
 const resetForm =form =>{  
     form.reset(0); 
     const file =form.querySelector("[type=file]");  
@@ -7,31 +31,20 @@ const resetForm =form =>{
     fileLabel?fileLabel.textContent =' No file chosen' :null;
 }
 
-const serializeForm =async (form)=>{ 
-    const formData ={}; const radioFields =[] 
-    for (const field of [...form.querySelectorAll('input, select, textarea')]) {
-        const {name, value, disabled} =field;  
+ 
 
-        if(!name || disabled) return;   
-        formData[name] =value; 
-    }     
-    return  JSON.stringify({...formData}); 
-} 
-
-const postForm =async evt =>{
+const postForm =evt =>{
     evt.preventDefault(); 
     const {target} =evt;
-    const {action, method} =target  
-    const formData =await serializeForm(target); 
-    const {csrf_token} = JSON.parse(formData);  
-
-    $.ajaxSetup({ beforeSend: (xhr, settings) => {if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) xhr.setRequestHeader("X-CSRFToken", csrf_token)}});
+    const {action, method} =target    
+    $.ajaxSetup({ beforeSend: (xhr, settings) => {if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) xhr.setRequestHeader("X-CSRFToken", target.csrf_token.value)}}); // stackoverflow
     $.ajax({ 
         url:action,
         type: method,
-        data: formData,
-        contentType: 'application/json',  
-        dataType: 'json',
+        data: new FormData(target),
+        contentType: false,  
+        processData: false,
+        cache: false,
         success: data => processResponse(data),
         error: error =>  processResponse(error) 
     });  
