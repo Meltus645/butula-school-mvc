@@ -1,7 +1,10 @@
 from flask import request 
 from mongoengine import Document 
 from .model_service import ModelService
+from werkzeug.utils import secure_filename 
 from mongoengine.errors import InvalidQueryError 
+
+from src.utils.constants.app import BASEDIR  
 
 class RequestsService:
     def __init__(self, model:Document, **kwargs):
@@ -22,9 +25,17 @@ class RequestsService:
     
     def post(self)->tuple:
         try: 
-            data =request.get_json()
-            data.pop('csrf_token')
-            return self.model.save(data) 
+            form ={**request.form}   
+            if form.get('csrf_token'): form.pop('csrf_token')
+            filekey =form.get('file_uploading')
+            if filekey:
+                file_uploaded =request.files.get(filekey) 
+                filename =secure_filename(filename=file_uploaded.filename) 
+                file_saved =file_uploaded.save(BASEDIR / f'media/docs/{filename}')
+                print(BASEDIR / f'media/docs/{filename}')
+                form.pop('file_uploading')
+            return  {}, 200 
+            # return self.model.save(form) 
         except Exception as e: return {'detail': f'{e}'}, 500
     
     def put(self, id:str)->tuple:
