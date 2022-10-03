@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_mongoengine import MongoEngine
-from flask_wtf import CSRFProtect
+from flask_wtf import CSRFProtect 
 
 from .utils.constants.app import BASEDIR
+from .utils import load_filters
 from .routes import admin, static, public
 
 def create_app(test_config:dict =None):
@@ -13,7 +14,9 @@ def create_app(test_config:dict =None):
     else: app.config.from_pyfile(BASEDIR /'config.py') 
 
     CSRFProtect(app=app)
-    MongoEngine(app=app) 
+    MongoEngine(app=app)  
+
+    load_filters(app=app)
 
     app.register_blueprint(admin, url_prefix ='/admin')   
     app.register_blueprint(static, url_prefix ='/')   
