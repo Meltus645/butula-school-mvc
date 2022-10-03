@@ -1,5 +1,5 @@
 from src.models import StaffModel, StudentsModel
-from src.forms import student_form, staff_form
+from src.forms import StudentForm, staff_form
 
 USER_POSITIONS =['students', 'staff']
 
@@ -24,7 +24,7 @@ USER_PLACEHOLDERS ={
 }
 
 USER_FORMS ={
-    'students': student_form,
+    'students': StudentForm,
     'staff': staff_form
 }
 

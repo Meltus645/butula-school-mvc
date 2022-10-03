@@ -1,6 +1,6 @@
 from flask_mongoengine.wtf import model_form   
 from src.models import ClassesModel, ExamsModel, ResourcesModel, SchoolCalendarModel, SubjectsModel, TimetableModel
-from src.forms import resource_form
+from src.forms import resource_form, TimetableForm
 
 ACADEMIC_SECTIONS =['e-notes', 'subjects', 'exams', 'classes','time-table', 'school-calendar'] 
 
@@ -41,7 +41,7 @@ ACADEMIC_FORMS ={
     'subjects': model_form(SubjectsModel),
     'e-notes': resource_form,
     'exams': model_form(ExamsModel),
-    'time-table': model_form(TimetableModel),
+    'time-table': TimetableForm,
     'school-calendar': model_form(SchoolCalendarModel),
     'classes': model_form(ClassesModel)
 }
