@@ -1,12 +1,12 @@
 from email.policy import default
-from mongoengine import Document, ReferenceField, StringField, FileField
+from mongoengine import Document, ReferenceField, StringField
 from .classesModel import ClassesModel
 
 
 class TimetableModel(Document):
     form =ReferenceField(ClassesModel, required =True)
     purpose =StringField(required =True, choices =(('Teaching', 'Teaching'),('Exams', 'Exams')), default ='Teaching') 
-    file =FileField(required =True)  
+    content =StringField(required =True, max_length=64) 
 
     meta ={'collection': 'timetable', 'indexes': [{'fields': ['$form', '$purpose'], 'default_language': 'english'}]}
 

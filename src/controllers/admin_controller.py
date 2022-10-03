@@ -1,7 +1,7 @@
 from flask import request, render_template, redirect, url_for, jsonify   
 from src.utils.constants.academics import ACADEMIC_FIELDS, ACADEMIC_FORMS, ACADEMIC_PLACEHOLDERS, ACADEMIC_SECTIONS, ACADEMIC_MODELS 
 from src.utils.constants.app import ACTIONS
-from src.utils.constants.users import USER_FORMS, USER_TYPES
+from src.utils.constants.users import USER_FORMS, USER_MODELS, USER_POSITIONS, USER_PLACEHOLDERS, USER_FIELDS
 from src.services.requests_service import RequestsService
 from flask_wtf import FlaskForm
 
@@ -9,28 +9,40 @@ from flask_wtf import FlaskForm
 def dashboard():
     return render_template('admin/base.html', page="dashboard")
 
-def users(type:str, action='list', id =None, section:str ='bio'): 
+def users(position:str, action='list', id =None, section:str ='bio'): 
     action =action.lower()
-    type =type.lower() 
+    position =position.lower() 
+    if not position in USER_POSITIONS or not action in ACTIONS: return redirect(url_for('admin.error_404'))
+
+    model =USER_MODELS[position]
+    service =RequestsService(model=model)
     params =request.args  
     form:FlaskForm =None 
-    if not type in USER_TYPES or not action in ACTIONS: return redirect(url_for('admin.error_404'))
+    data: dict =None
+    page =position
+    
     
     if action == 'list':  
-        if params.get('init') =='app': return render_template('list.html') 
+        data, status_code =service.get()
+        if params.get('init') =='app': return render_template('list.html', fields =USER_FIELDS[position], data=data, page=position, position=position) 
 
     if action == 'new':  
-        form =USER_FORMS[type]
-        if params.get('init') =='app': return render_template('form.html', form =form) 
+        form =USER_FORMS[position] 
+        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position]) 
 
     if action == 'edit': 
-        form =USER_FORMS[type]
-        if params.get('init') =='app': return render_template('form.html', form =form) 
+        if request.method =='POST': 
+            response, status_code =service.put(id=id)
+
+        data, status_code =service.get(id=id)    
+        form =USER_FORMS[position]
+        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position]) 
 
     if action == 'view':  
-        if params.get('init') =='app': return render_template('view.html', section =section) 
+        data, status_code =service.get(id=id)    
+        if params.get('init') =='app': return render_template('view.html', section =section, data =data) 
 
-    return render_template(f'{type}.html', page=type, action =action, form =form, section =section)
+    return render_template(f'{position}.html', page=position, action =action, form =form, section =section, placeholders =USER_PLACEHOLDERS[position], fields =USER_FIELDS[position], data =data)
 
  
 def academics(section ='e-notes', action ='list', id:str =None): 

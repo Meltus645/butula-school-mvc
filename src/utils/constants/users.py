@@ -1,24 +1,34 @@
-from flask_mongoengine.wtf import model_form
 from src.models import StaffModel, StudentsModel
+from src.forms import student_form, staff_form
 
-USER_TYPES =['students', 'staff']
+USER_POSITIONS =['students', 'staff']
 
 USER_FIELDS ={
-    'subjects': ['code', 'name'],
-    'e-notes': [],
-    'exams': [],
-    'time-table': [],
-    'school-calendar': []
+    'students': ['name',  'admission_number', 'phone', 'form', 'status', 'enrolled'],
+    'staff': ['name', 'staffid', 'gender', 'phone', 'role', 'status'], 
 }
 
 USER_PLACEHOLDERS ={
-    'subjects': {
-        'code': 'Enter subject code e.g 101',
-        'name': 'Enter subject name e.g english'
+    'students': {
+        'name': 'Enter first and last name',
+        'admission_number': 'Enter admission number',
+        'phone': 'Enter Parent/Guardian phone number',
+        'birth_certificate_number': 'Enter student Birth certificate entry number' 
+    },
+    'staff': {
+        'name': 'Enter first and last name',
+        'staff_id': 'Enter staff Id',
+        'phone': 'Enter phone number',
+        'email': 'Enter an email address' 
     }
 }
 
 USER_FORMS ={
-    'students': model_form(StudentsModel),
-    'staff': model_form(StaffModel)
+    'students': student_form,
+    'staff': staff_form
+}
+
+USER_MODELS ={
+    'students': StudentsModel,
+    'staff': StaffModel
 }
