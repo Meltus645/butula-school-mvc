@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, EmailField, ListField, ReferenceField, DictField
+from mongoengine import Document, StringField, ListField, ReferenceField, DictField
 from .groupsModel import GroupsModel, PermissionsModel
 from .rolesModel import RolesModel
 
@@ -12,7 +12,7 @@ class StaffModel(Document):
     group =ListField(ReferenceField(GroupsModel), required =False)
     permissions =ListField(ReferenceField(PermissionsModel), required =False)
     status =StringField(max_length=8, default ="Inactive", required =False, regex=r'^[a-zA-Z]+$')
-    Otp =DictField(required =False) #{'code': 1234, 'expires': ''}  
+    otp =DictField(required =False) #{'code': 1234, 'expires': ''}  
     password =StringField(max_length=255)
     avatar =StringField(required =False) # http://127.0.0.1:8080/media/imgs/7043_date_uploaded.jpg
  
