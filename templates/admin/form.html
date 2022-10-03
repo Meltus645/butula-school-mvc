@@ -8,9 +8,9 @@
             {% if field.name =='csrf_token'%} {{field()}}
             {% else%} 
             <div class="form-group mb-4" style="position: relative;"> 
-                 
+                {{field.type}} 
                 <label for="{{field.name}}" class="form-label" style="text-transform: capitalize;">{{field.label()}}</label>  
-                {%if field.type =='SelectField'%} 
+                {%if field.type =='ModelSelectField'%} 
                 {{field(class_ ="form-select", placeholder =placeholders[field.name], value =data[field.name])}}
                 {%elif field.type =='FileField'%}
                 <button class="custom-file-field" type="button" onclick ="openFile(this)" data-click="#{{field.id}}" data-form="ctrl-form"><span class="span">Choose file</span><span id="file-label">{%if data %} {{data['filename']}} {%else%}No file chosen{%endif%}</span></button>
@@ -28,4 +28,4 @@
     </form>
 {% else %}    
 form field
-{% endif %} 
+{% endif %}  
