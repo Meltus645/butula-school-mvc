@@ -12,7 +12,7 @@ def dashboard():
 def users(position:str, action='list', id =None, section:str ='bio'): 
     action =action.lower()
     position =position.lower() 
-    if not position in USER_POSITIONS or not action in ACTIONS: return redirect(url_for('admin.error_404'))
+    if not position in USER_POSITIONS or not action in ACTIONS: return redirect(url_for('admin.error_404')), 404
 
     model =USER_MODELS[position]
     service =RequestsService(model=model)
@@ -24,7 +24,7 @@ def users(position:str, action='list', id =None, section:str ='bio'):
     
     if action == 'list':  
         data, status_code =service.get()
-        if params.get('init') =='app': return render_template('list.html', fields =USER_FIELDS[position], data=data, page=position, position=position) 
+        if params.get('init') =='app': return render_template('list.html', fields =USER_FIELDS[position], data=data, page=position, position=position), status_code 
 
     if action == 'new':  
         form =USER_FORMS[position] 
@@ -72,7 +72,7 @@ def academics(section ='e-notes', action ='list', id:str =None):
 
     if action =='edit':
         if request.method =='POST': 
-            response, status_code =service.put(id=id)
+            response, status_code =service.put(id=id) 
             return response   
 
         data, status_code =service.get(id=id)
