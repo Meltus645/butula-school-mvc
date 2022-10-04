@@ -1,7 +1,7 @@
 from mongoengine.errors import ValidationError, FieldDoesNotExist, NotUniqueError 
 from pymongo.errors import DuplicateKeyError
 from mongoengine import Document 
-
+from bson.objectid import ObjectId 
 
 class ModelService:
     """
@@ -25,7 +25,8 @@ class ModelService:
         finally:  return response   
     
     def save(self, data:dict)->tuple:
-        try:    
+        try:  
+            print(data)  
             new_item =self.model(**data).save() 
             response ={'detail': 'created successfully'}, 201 
         except FieldDoesNotExist as e:  response ={'detail': f'{e}'}, 400
@@ -38,14 +39,18 @@ class ModelService:
    
     def edit(self, id:str, data:dict)->tuple:
         try:
+            for key in data.keys():
+                if ObjectId.is_valid(oid=data[key]): data[key] =ObjectId(oid=data[key])
+
             self.model.objects.get(id=id).update(**data) 
-            response =  {'detail': "changes  successfully"}, 200 
+            response =  {'detail': "changes saved successfully"}, 200 
         
         except self.model.DoesNotExist: response ={'detail': 'not found'}, 404
         except FieldDoesNotExist as e: response ={'detail': e.to_dict()}, 404
         except DuplicateKeyError: response = {'detail': 'conflict'}, 409
         except NotUniqueError: response = {'detail': 'conflict'}, 409
-        except ValidationError as e: response ={'detail': f'invalid {e.field_name}'}, 400 
+        except ValidationError as e:  
+            response ={'detail': f'invalid field {e.field_name}'}, 400 
         finally: return response
 
     
