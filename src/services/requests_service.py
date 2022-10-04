@@ -1,10 +1,9 @@
 from flask import request 
 from mongoengine import Document 
-from .model_service import ModelService
-from werkzeug.utils import secure_filename 
-from mongoengine.errors import InvalidQueryError 
+from .model_service import ModelService 
+from mongoengine.errors import InvalidQueryError  
 
-from src.utils.constants.app import BASEDIR  
+from src.utils.file_upload import upload_file
 
 class RequestsService:
     def __init__(self, model:Document, **kwargs):
@@ -18,7 +17,7 @@ class RequestsService:
             if id: return self.model.fetch(id=id)
             elif search_q: response,status_code =self.model.fetch(search_q=search_q)
             else: response,status_code =self.model.fetch(**filters)  
-            return  [resp.to_mongo() for resp in response], status_code
+            return  [resp for resp in response], status_code
         except ValueError: return {'detail': 'cannot resolve query params parsed'}, 400 
         except InvalidQueryError as e: return {'detail': 'cannot resolve query fields parsed'}, 400
         except Exception as e:  return {'detail': f'{e}'}, 500 
@@ -26,24 +25,31 @@ class RequestsService:
     def post(self)->tuple:
         try: 
             form ={**request.form}   
-            if form.get('csrf_token'): form.pop('csrf_token')
+            if form.get('csrf_token'): form.pop('csrf_token') 
             filekey =form.get('file_uploading')
-            if filekey:
-                file_uploaded =request.files.get(filekey) 
-                filename =secure_filename(filename=file_uploaded.filename) 
-                file_saved =file_uploaded.save(BASEDIR / f'media/docs/{filename}')
-                print(BASEDIR / f'media/docs/{filename}')
-                form.pop('file_uploading')
-            return  {}, 200 
-            # return self.model.save(form) 
+            if filekey: 
+                done, filepath =upload_file(request.files.get(filekey)) 
+                if done:  form[filekey] =filepath 
+                else: return filepath, 500 
+                form.pop('file_uploading') 
+            return self.model.save(form) 
         except Exception as e: return {'detail': f'{e}'}, 500
     
-    def put(self, id:str)->tuple:
+    def put(self, id:str)->tuple: 
         try: 
-            data =request.get_json()
-            data.pop('csrf_token')
-            return self.model.edit(id=id, data=data) 
-        except Exception as e: return {'detail': f'{e}'}, 500
+            form ={**request.form}   
+            if form.get('csrf_token'): form.pop('csrf_token')
+            filekey, prev_path =[item.strip() for item in form.get('file_uploading').split('&')]  
+            if filekey:  
+                done, filepath =upload_file(request.files.get(filekey), swap_with =prev_path) 
+                if done:  form[filekey] =filepath 
+                else: 
+                    print(filepath)
+                form.pop('file_uploading') 
+                return {}, 200
+            # return self.model.edit(id=id, data=form) 
+        except Exception as e: 
+            return {'detail': f'{e}'}, 500
 
     def delete(self, id:str)->tuple:
         try: return self.model.remove(id=id) 
