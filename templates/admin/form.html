@@ -3,21 +3,17 @@
 
 {% if form %}
     <form action="" method="post" onsubmit="postForm(event)" name="ctrl-form" enctype="multipart/form-data"> 
-        {% for field in form() %} 
-
-            {% if field.name =='csrf_token'%} {{field()}}
+        {% for field in form(data) %}  
+            {% if field.name =='csrf_token' or field.name =='url_field'%} {{field()}} 
             {% else%} 
             <div class="form-group mb-4" style="position: relative;"> 
                  
                 <label for="{{field.name}}" class="form-label" style="text-transform: capitalize;">{{field.label()}}</label>  
-                {%if field.type =='SelectField'%} 
-                {{field(class_ ="custom-select", placeholder =placeholders[field.name], value =data[field.name])}}
+                {%if field.type =='SelectField'%}  {{field(class_ ="custom-select", placeholder =placeholders[field.name])}}
                 {%elif field.type =='FileField'%}
                 <button class="custom-file-field" type="button" onclick ="openFile(this)" data-click="#{{field.id}}" data-form="ctrl-form"><span class="span">Choose file</span><span id="file-label">{%if data %} {{data['filename']}} {%else%}No file chosen{%endif%}</span></button>
                 {{field(hidden =true, **{'data-file-label': '#file-label'})}}
-                <input type="hidden" name="file_uploading" value="{{field.name}}">
-                {%elif field.type =='IntegerField' and field.name =='level'%}
-                <div class="d-flex custom-group align-items-center"><span>Form</span>{{field(placeholder =placeholders[field.name], class_ ="form-control", value =data[field.name], min =1, max =6, tabindex ="1", **{'data-type': 'integer'})}}</div>  
+                <input type="hidden" name="file_uploading" value="{%if data%}{{field.name}}&{{data.file}}{%else%}{{field.name}}{%endif%}"> 
                 {% else%}  
                 {{field(class_ ="form-control", value =data[field.name], placeholder =placeholders[field.name],)}}
                 {%endif%}

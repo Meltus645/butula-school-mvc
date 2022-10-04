@@ -1,2 +1,2 @@
-<button data-uri="{{ url_for('admin.academics', action ='edit', section =section, id =item['_id']) }}" class="btn btn-warning mr-3" onclick="activateTab(this)">Edit</button>
-<button data-uri="{{ url_for('admin.academics', action ='delete', section =section, id =item['_id']) }}" class="btn btn-danger" onclick="promptDelete(this,   `{{item['name']}} subject`)">Delete</button>
+<button data-uri="{{ url_for('admin.academics', action ='edit', section =section, id =item.id) }}" class="btn btn-warning mr-3" onclick="activateTab(this)">Edit</button>
+<button data-uri="{{ url_for('admin.academics', action ='delete', section =section, id =item.id) }}" class="btn btn-danger" onclick="promptDelete(this,   `{{item['name']}} subject`)">Delete</button>
