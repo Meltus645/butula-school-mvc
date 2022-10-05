@@ -1,7 +1,6 @@
 from werkzeug.utils import secure_filename
 from uuid import uuid1  
-import os
-import shutil
+import os 
 
 from .constants.app import BASEDIR
 
@@ -14,21 +13,17 @@ class MediaWorker:
         self.expected_mimetypes  =self.allowed_metadata[expected]['mime']
         self.upload_dir =expected
         self.max_size =1024 *1024 
-        self.media_root =BASEDIR /'media'
-        self.history =[]  
+        self.media_root =BASEDIR /'media'   
 
-    def upload(self, commit =True):
+    def upload_media(self):
         try:  
             filename =self.validate_media()  
-            return self.save_media(filename=filename, commit=commit) 
+            return self.save_media(filename=filename) 
         except Exception as e: return False, f'{e}'
         
-    def unload(self, path:str, commit =True):
-        try:
-            self.src =f'{self.media_root /path}'
-            self.dst =f"{self.media_root / 'tmp' /'_'.join(path.split('/'))}" 
-            if not commit:  return self.move(src=self.src, dst=self.dst)  
-            os.unlink(path=self.src)
+    def remove_media(self, file:str):
+        try:    
+            os.unlink(path=self.media_root /file)
             return True, None 
         except Exception as e: return False, f'{e}'
 
@@ -37,32 +32,12 @@ class MediaWorker:
         file_extension =filename.split('.')[-1].strip() 
         mimetype =self.media.mimetype.lower()  
         if not file_extension in self.expected_extensions or not mimetype in self.expected_mimetypes: raise TypeError(f"Only {','.join(self.expected_extensions)} are allowed.") # extension and 
-        elif len(self.media.read()) >self.max_size: raise ValueError("413: file larger than 1mb") 
+        # elif len(self.media.read()) >self.max_size: raise ValueError("413: file larger than 1mb") 
         return filename
 
-    def save_media(self, filename:str, commit =True)->tuple: 
-        try: 
-            if not commit:  
-                mediapath =f'tmp/{self.upload_dir}_{uuid1()}_{filename}'
-                self.media.save(f"{self.media_root}/{mediapath}")
-                return True, mediapath
-
-            mediapath =f'{self.upload_dir}/{uuid1()}_{filename}'
-            self.media.save(f"{self.media_root}/{mediapath}")
-            self.media.close()
-            return True, mediapath
-        except Exception as e: return False, f'{e}'
-    
-    def commit(self, path:str, action ='save'):
-        if not action in ['save', 'delete']: return False, 'action not allowed'
-        if action =='delete': pass
-        print(path)
-        # self.move() 
-        # self.media.close() 
-    
-    def revert(self, history): pass
-
-    def move(self, src:str, dst:str):
+    def save_media(self, filename:str)->tuple: 
         try:  
-            return True, shutil.move(src=src, dst=dst)
-        except Exception as e: return False, f'{e}'
+            mediapath =f'{self.upload_dir}/{uuid1()}_{filename}' 
+            self.media.save(dst =self.media_root /mediapath)   
+            return True, mediapath
+        except Exception as e: return False, f'{e}' 
