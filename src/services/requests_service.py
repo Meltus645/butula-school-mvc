@@ -2,6 +2,8 @@ from flask import request
 from mongoengine import Document 
 from .model_service import ModelService 
 from mongoengine.errors import InvalidQueryError  
+from werkzeug.utils import secure_filename 
+from src.utils.passwords import generate_password, hash_password
 
 from src.utils.file_upload import upload_file
 
@@ -23,34 +25,42 @@ class RequestsService:
         except Exception as e:  return {'detail': f'{e}'}, 500 
     
     def post(self)->tuple:
-        try: 
-            form ={**request.form}   
-            if form.get('csrf_token'): form.pop('csrf_token') 
-            filekey =form.get('file_uploading')
-            if filekey: 
-                done, filepath =upload_file(request.files.get(filekey)) 
-                if done:  form[filekey] =filepath 
-                else: return filepath, 500 
-                form.pop('file_uploading') 
-            return self.model.save(form) 
-        except Exception as e: return {'detail': f'{e}'}, 500
+        try:  
+            done, result =self.model_config() 
+            if not done: return result, 200  
+            return self.model.save(result) 
+        except Exception as e:  
+            return {'detail': f'{e}'}, 500
     
     def put(self, id:str)->tuple: 
         try: 
-            form ={**request.form}   
-            if form.get('csrf_token'): form.pop('csrf_token')
-            filekey, prev_path =[item.strip() for item in form.get('file_uploading').split('&')]  
-            if filekey:  
-                done, filepath =upload_file(request.files.get(filekey), swap_with =prev_path) 
-                if done:  form[filekey] =filepath 
-                else: 
-                    print(filepath)
-                form.pop('file_uploading') 
-                return {}, 200
-            # return self.model.edit(id=id, data=form) 
+            done, result =self.model_config(access_method ='put')
+            if not done: return result
+
+            return self.model.edit(id=id, data=result) 
         except Exception as e: 
             return {'detail': f'{e}'}, 500
 
     def delete(self, id:str)->tuple:
         try: return self.model.remove(id=id) 
         except Exception as e: return {'detail': f'{e}'}, 500 
+
+
+    def model_config(self, access_method ='post')->tuple:
+        form ={**request.form}   
+        if form.get('csrf_token'): form.pop('csrf_token') 
+
+        if 'birth_certificate_number' in form: form['password']  =hash_password(form.get('birth_certificate_number'))
+        if 'audience' in form: form['audience'] =[form.get('audience')]
+        filekey =form.get('file_uploading')
+        if filekey: 
+            file_received =request.files.get(filekey) 
+            done, msg =upload_file(file_received, as_b64=True) 
+            if done:  
+                form['filename'] =secure_filename(file_received.filename)
+                form[filekey] =msg 
+            else:
+                # if not access_method =='post'
+                return False, msg
+            form.pop('file_uploading')
+        return True, form
