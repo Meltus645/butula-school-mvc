@@ -8,12 +8,13 @@
             {% else%} 
             <div class="form-group mb-4" style="position: relative;"> 
                  
-                <label for="{{field.name}}" class="form-label" style="text-transform: capitalize;">{{field.label()}}</label>  
-                {%if field.type =='SelectField'%}  {{field(class_ ="custom-select", placeholder =placeholders[field.name])}}
+                <label for="{{field.name}}" class="form-label">{{field.label()}}</label>  
+                {%if field.type =='SelectField'%}  {{field(class_ ="custom-select")}}
+                {% elif field.type =='SelectMultipleField'%}  {{field(class_ ="custom-select", row =1)}}
                 {%elif field.type =='FileField'%}
                 <button class="custom-file-field" type="button" onclick ="openFile(this)" data-click="#{{field.id}}" data-form="ctrl-form"><span class="span">Choose file</span><span id="file-label">{%if data %} {{data['filename']}} {%else%}No file chosen{%endif%}</span></button>
                 {{field(hidden =true, **{'data-file-label': '#file-label'})}}
-                <input type="hidden" name="file_uploading" value="{%if data%}{{field.name}}&{{data.file}}{%else%}{{field.name}}{%endif%}"> 
+                <input type="hidden" name="file_uploading" value="{{field.name}}"> 
                 {% else%}  
                 {{field(class_ ="form-control", value =data[field.name], placeholder =placeholders[field.name],)}}
                 {%endif%}
