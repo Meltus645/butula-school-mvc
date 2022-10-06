@@ -25,8 +25,7 @@ class ModelService:
         finally:  return response   
     
     def save(self, data:dict)->tuple:
-        try:  
-            print(data)  
+        try:   
             new_item =self.model(**data).save() 
             response ={'detail': 'created successfully'}, 201 
         except FieldDoesNotExist as e:  response ={'detail': f'{e}'}, 400
