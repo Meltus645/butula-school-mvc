@@ -8,9 +8,10 @@ class ResourcesModel(Document):
     subject =ReferenceField(SubjectsModel, required =True)
     audience =ListField(ReferenceField(ClassesModel), required =True)
     description =StringField(required =True, max_length=256)
-    resource_type =StringField(required =True, choices =(('Summary Notes', 'Summary Notes'),('RAT', 'RAT'),('Assignment', 'Assignment'),('Past Paper', 'Past Paper'),)) #[Assignment/RAT/CAT/Revision/Notes/Past Paper]
+    resource_type =StringField(required =True, max_length=24) #[Assignment/RAT/CAT/Revision/Notes/Past Paper]
     submit_by =DateTimeField(required=False) 
-    file =StringField(max_length =255, required =False)
+    file =StringField(required =True)
+    filename =StringField(max_length =64, required =True)
     author =ReferenceField(StaffModel, required =True)
     views =IntField(required =False, default =0)
     downloads =IntField(required =False, default =0)

@@ -4,7 +4,7 @@ from .groupsModel import GroupsModel, PermissionsModel
 from .rolesModel import RolesModel
 
 class StaffModel(Document):
-    name =StringField(regex=r'^[a-zA-Z]+$', required =True, max_length=128) 
+    name =StringField(regex=r'^[a-zA-Z ]+$', required =True, max_length=128) 
     staff_id =StringField(regex=r'^[0-9]+$', required =True, max_length=128) 
     phone =StringField(regex=r'^[0-9]+$', required =True, unique =True, max_length=13)
     email =EmailField(required =True, max_length =64)
@@ -17,7 +17,8 @@ class StaffModel(Document):
     email_verified =BooleanField(required=True, default=False) 
     password =StringField(max_length=255)
     created =DateTimeField(required=True, default=datetime.now)
-    avatar =StringField(required =False, max_length=64) # http://127.0.0.1:8080/media/imgs/7043_date_uploaded.jpg
+    avatar =StringField(required =False) 
+    filename =StringField(max_length =64, required =False)
  
     meta ={
         'collection': 'staff',
