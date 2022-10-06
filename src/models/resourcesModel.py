@@ -2,6 +2,7 @@ from mongoengine import Document, StringField, ReferenceField, ListField, DateTi
 from .staffModel import StaffModel
 from .subjectsModel import SubjectsModel
 from .classesModel import ClassesModel
+from datetime import datetime
 
 class ResourcesModel(Document):
     topic =StringField(required =True, max_length=255)  
@@ -15,7 +16,7 @@ class ResourcesModel(Document):
     author =ReferenceField(StaffModel, required =True)
     views =IntField(required =False, default =0)
     downloads =IntField(required =False, default =0)
-    time_uploaded =DateTimeField(required =False)
+    time_uploaded =DateTimeField(required =False, default=datetime.now)
 
     meta ={'collection': 'resources', 'indexes': [{'fields': ['$topic']}]}
 

@@ -1,4 +1,4 @@
-from flask import request 
+from flask import request, json 
 from mongoengine import Document 
 from .model_service import ModelService 
 from mongoengine.errors import InvalidQueryError  
@@ -27,7 +27,7 @@ class RequestsService:
     def post(self)->tuple:
         try:  
             done, result =self.model_config() 
-            if not done: return result, 200  
+            if not done: return result, 200 
             return self.model.save(result) 
         except Exception as e:  
             return {'detail': f'{e}'}, 500
@@ -47,12 +47,10 @@ class RequestsService:
 
 
     def model_config(self, access_method ='post')->tuple:
-        form ={**request.form}   
+        form ={key: (json.loads(value) if len(value) >0 and (value[0]=='[' and value[-1] ==']') else value) for (key, value) in [*{**request.form}.items()]}  #  check if a value has [ at start and ] at end and decode it
         if form.get('csrf_token'): form.pop('csrf_token') 
-
         if 'birth_certificate_number' in form: form['password']  =hash_password(form.get('birth_certificate_number'))
-        if 'audience' in form: form['audience'] =[form.get('audience')]
-        filekey =form.get('file_uploading')
+        filekey =form.get('file_uploading') 
         if filekey: 
             file_received =request.files.get(filekey) 
             done, msg =upload_file(file_received, as_b64=True) 
@@ -60,7 +58,10 @@ class RequestsService:
                 form['filename'] =secure_filename(file_received.filename)
                 form[filekey] =msg 
             else:
-                # if not access_method =='post'
+                if access_method =='put':
+                    # TODO: check if the file is empty, and return True 
+                    pass
+
                 return False, msg
             form.pop('file_uploading')
         return True, form
