@@ -1,11 +1,11 @@
 from src.models import StaffModel, StudentsModel
-from src.forms import StudentForm, staff_form
+from src.forms import StudentForm, StaffForm
 
 USER_POSITIONS =['students', 'staff']
 
 USER_FIELDS ={
     'students': ['name',  'admission_number', 'phone', 'form', 'status', 'enrolled'],
-    'staff': ['name', 'staffid', 'gender', 'phone', 'role', 'status'], 
+    'staff': ['name', 'staff_id', 'gender', 'phone', 'role', 'status'], 
 }
 
 USER_PLACEHOLDERS ={
@@ -25,7 +25,7 @@ USER_PLACEHOLDERS ={
 
 USER_FORMS ={
     'students': StudentForm,
-    'staff': staff_form
+    'staff': StaffForm
 }
 
 USER_MODELS ={
