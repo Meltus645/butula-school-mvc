@@ -22,12 +22,12 @@ class ResourceForm(FlaskForm):
         self.author.choices =[*self.author.choices, *[(author.id, author) for author in StaffModel.objects.all()]]
         if data: 
             self.topic.default =data.topic
-            self.subject.default =data.subject
+            self.subject.default =data.subject.id
             self.resource_type.default =data.resource_type
-            self.audience.default =data.audience
+            self.audience.default =[audience.id for audience in data.audience]
             self.description.default =data.description
-            self.author.default =data.author
-            # self.submit_by.default =data.submit_by
+            self.author.default =data.author.id
+            # self.submit_by.default =data.submit_by 
 
             self.process()
 
