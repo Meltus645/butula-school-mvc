@@ -24,11 +24,14 @@ def users(position:str, action='list', id =None, section:str ='bio'):
     
     if action == 'list':  
         data, status_code =service.get()
-        if params.get('init') =='app': return render_template('list.html', fields =USER_FIELDS[position], data=data, page=position, position=position), status_code 
+        if params.get('init') =='app': return render_template('list.html', fields =USER_FIELDS[position], data=data, page=page, position=position), status_code 
 
     if action == 'new':  
+        if request.method =='POST':  
+            response, status_code =service.post()
+            return response 
         form =USER_FORMS[position] 
-        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position]) 
+        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position], page=page) 
 
     if action == 'edit': 
         if request.method =='POST': 
@@ -36,13 +39,13 @@ def users(position:str, action='list', id =None, section:str ='bio'):
 
         data, status_code =service.get(id=id)    
         form =USER_FORMS[position]
-        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position]) 
+        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position], page =page) 
 
     if action == 'view':  
         data, status_code =service.get(id=id)    
-        if params.get('init') =='app': return render_template('view.html', section =section, data =data) 
+        if params.get('init') =='app': return render_template('view.html', section =section, data =data, page =page) 
 
-    return render_template(f'{position}.html', page=position, action =action, form =form, section =section, placeholders =USER_PLACEHOLDERS[position], fields =USER_FIELDS[position], data =data)
+    return render_template(f'{position}.html', page=page, action =action, form =form, section =section, placeholders =USER_PLACEHOLDERS[position], fields =USER_FIELDS[position], data =data)
 
  
 def academics(section ='e-notes', action ='list', id:str =None): 
