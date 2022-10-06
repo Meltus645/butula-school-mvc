@@ -1,6 +1,5 @@
-from unicodedata import name
 from flask_wtf import FlaskForm
-from wtforms import FileField, SelectField, HiddenField
+from wtforms import FileField, SelectField 
 
 from src.models.classesModel import ClassesModel
 
@@ -16,7 +15,5 @@ class TimetableForm(FlaskForm):
          
         if data: 
             self.form.default =data.form.id   
-            self.purpose.default =data.purpose 
-            self.hidden_field =HiddenField(label='', name='hidden_field', id='hidden_field', default=data.file)
-            data.filename ='_'.join(data.file.split('/')[-1].split('_')[1:])  
+            self.purpose.default =data.purpose  
             self.process()
