@@ -36,12 +36,19 @@ const resetForm =form =>{
 const postForm =evt =>{
     evt.preventDefault(); 
     const {target} =evt;
-    const {action, method} =target    
+    const {action, method} =target 
+    const formData = new FormData(target); 
+    // serialize multiselect field
+    [...target.querySelectorAll('[multiple]')].forEach(({name, children}) =>{
+        const choices =[];
+        [...children].forEach(({selected, value}) =>selected?choices.push(value):null); 
+        formData.set(name, JSON.stringify(choices));  // encode array to send it as a string  
+    }); 
     $.ajaxSetup({ beforeSend: (xhr, settings) => {if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) xhr.setRequestHeader("X-CSRFToken", target.csrf_token.value)}}); // stackoverflow
     $.ajax({ 
         url:action,
         type: method,
-        data: new FormData(target),
+        data: formData,
         contentType: false,  
         processData: false,
         cache: false,
