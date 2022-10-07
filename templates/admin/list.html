@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 {% for field in fields %}
-                    <th>{{field|title}}</th>
+                    <th>{{field| strip_special |title}}</th>
                 {% endfor %}
                 <th>Action</th>
             </tr>
@@ -12,8 +12,10 @@
 
             {% for item in data %}
             <tr> 
-                {% for field in fields %}
-                <td>{{item[field]}}</td> 
+                {% for field in fields %} 
+                {%if not item[field] | type_of =='datetime'%}<td>{{item[field]}}</td>
+                {%else%}<td>{{item[field] | since}}</td>
+                {%endif%} 
                 {% endfor %}
                 <td>
                     <div class="d-flex">

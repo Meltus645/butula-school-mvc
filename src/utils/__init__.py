@@ -1,4 +1,5 @@
-from .filters import properties, slugify
+from .filters import  slugify,properties, since, type_of,strip_special
+
 
 def load_filters(app)->None:
     """
@@ -9,4 +10,7 @@ def load_filters(app)->None:
     """
     app.jinja_env.filters['properties'] =properties
     app.jinja_env.filters['slugify'] =slugify
+    app.jinja_env.filters['since'] =since
+    app.jinja_env.filters['type_of'] =type_of
+    app.jinja_env.filters['strip_special'] =strip_special
       
