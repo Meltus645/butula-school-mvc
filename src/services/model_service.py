@@ -27,6 +27,7 @@ class ModelService:
     def save(self, data:dict)->tuple:
         try:   
             new_item =self.model(**data).save() 
+            # TODO: get some key value  
             response ={'detail': 'created successfully'}, 201 
         except FieldDoesNotExist as e:  response ={'detail': f'{e}'}, 400
         except DuplicateKeyError: response ={'detail': 'conflict'}, 409
@@ -39,8 +40,7 @@ class ModelService:
     def edit(self, id:str, data:dict)->tuple:
         try:
             for key in data.keys():
-                if ObjectId.is_valid(oid=data[key]): data[key] =ObjectId(oid=data[key])
-
+                data[key] =self.model_refs(data[key])  
             self.model.objects.get(id=id).update(**data) 
             response =  {'detail': "changes saved successfully"}, 200 
         
@@ -48,8 +48,7 @@ class ModelService:
         except FieldDoesNotExist as e: response ={'detail': e.to_dict()}, 404
         except DuplicateKeyError: response = {'detail': 'conflict'}, 409
         except NotUniqueError: response = {'detail': 'conflict'}, 409
-        except ValidationError as e:  
-            response ={'detail': f'invalid field {e.field_name}'}, 400 
+        except ValidationError as e: response ={'detail': f'invalid field {e.field_name}'}, 400 
         finally: return response
 
     
@@ -59,3 +58,8 @@ class ModelService:
             response ={'detail': []}, 204 
         except self.model.DoesNotExist: response ={'detail': 'ot found'}, 404 
         finally: return response
+    
+    def model_refs(self, ref)->dict: 
+        if ObjectId.is_valid(ref): ref =ObjectId(oid=ref) 
+        if type(ref) is list: ref =[self.model_refs(_ref) for _ref in ref]
+        return ref

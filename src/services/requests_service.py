@@ -4,6 +4,7 @@ from .model_service import ModelService
 from mongoengine.errors import InvalidQueryError  
 from werkzeug.utils import secure_filename 
 from src.utils.passwords import generate_password, hash_password
+from src.utils.constants.flags import Flags
 
 from src.utils.file_upload import upload_file
 
@@ -59,9 +60,6 @@ class RequestsService:
                 form[filekey] =msg 
             else:
                 if access_method =='put':
-                    # TODO: check if the file is empty, and return True 
-                    pass
-
-                return False, msg
-            form.pop('file_uploading')
+                    if not msg.flag.name == Flags.FILE_EMPTY.name: return False, msg
+            form.pop('file_uploading') 
         return True, form
