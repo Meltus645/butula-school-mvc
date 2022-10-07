@@ -6,7 +6,7 @@ ACADEMIC_SECTIONS =['e-notes', 'subjects', 'exams', 'classes','time-table', 'sch
 
 ACADEMIC_FIELDS ={
     'subjects': ['code', 'name'],
-    'e-notes': ['topic', 'subject', 'resource_type', 'author', 'views', 'downloads', 'time_uploaded'],
+    'e-notes': ['topic', 'subject', 'resource_type', 'author', 'time_uploaded'],
     'exams': ['exam_name', 'exam_type'],
     'time-table': ['form', 'purpose', 'filename'],
     'school-calendar': ['year', 'term', 'starts_from', 'ends_on'],
