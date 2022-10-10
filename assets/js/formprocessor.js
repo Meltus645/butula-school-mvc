@@ -37,7 +37,7 @@ const postForm =evt =>{
     evt.preventDefault(); 
     const {target} =evt;
     const {action, method} =target 
-    const formData = new FormData(target); 
+    const formData = new FormData(target);  
     // serialize multiselect field
     [...target.querySelectorAll('[multiple]')].forEach(({name, children}) =>{
         const choices =[];
@@ -52,14 +52,45 @@ const postForm =evt =>{
         contentType: false,  
         processData: false,
         cache: false,
-        success: data => processResponse(data),
-        error: error =>  processResponse(error) 
+        success: data => processResponse(data, target),
+        error: error =>  processResponse(error, target) 
     });  
 } 
 
-const processResponse = response =>{
-    console.log(response);
+const processResponse = (response, form) =>{
+    [...form.querySelectorAll('input,select,textarea')].forEach(element =>{
+        if(!element) return;
+        const {id, type, hidden} =element;
+        if(type =='hidden' || hidden || !id) return;
+        const helper = getElementById(`${id}-helper`);
+        helper.textContent ='';
+        modifyElementClassLists([{ element, remove: ['is-invalid'], add: ['is-valid', ], }, { element: helper, remove: ['valid-feedback', 'invalid-feedback'], add: [], } ])  
+    }) 
+    const {status, responseJSON} =response
+    if(status >=200 && status<=299){ // success
+        
+    }else if(status>=300 && status<=399){ // redirects
+
+    }else if(status>=400 && status <=499 ){ // user errors 
+        [...Object.keys(responseJSON)].forEach(key =>{
+            const input =getElementById(key);
+            const helper =getElementById(`${key}-helper`);
+            helper.textContent =responseJSON[key]; 
+            modifyElementClassLists([{ element: input, remove: ['is-valid'], add: ['is-invalid'], }, { element: helper, remove: ['valid-feedback'], add: ['invalid-feedback'], } ])  
+        })
+
+    }else if(status>=500 && status <=599 ){ // server errors
+
+    }else console.log(status); // unknown     
 }
+
+const getElementById = id =>document.getElementById(id);
+const modifyElementClassLists =elements =>{ 
+    elements.forEach(({element, remove, add}) =>{ 
+        remove.forEach(cls => element.classList.remove(cls));
+        add.forEach(cls => element.classList.add(cls));
+    });
+};
 
 const freezeCtaButton =button =>{
     // const resetButton = () => {button.removeAttribute('disabled'); 
