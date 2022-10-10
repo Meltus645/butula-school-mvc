@@ -1,5 +1,5 @@
 from flask import request, render_template, redirect, url_for, jsonify   
-from src.utils.constants.academics import ACADEMIC_FIELDS, ACADEMIC_FORMS, ACADEMIC_PLACEHOLDERS, ACADEMIC_SECTIONS, ACADEMIC_MODELS 
+from src.utils.constants.academics import ACADEMIC_FIELDS, ACADEMIC_FORMS, ACADEMIC_PLACEHOLDERS, ACADEMIC_SECTIONS, ACADEMIC_MODELS, ACADEMIC_FILES 
 from src.utils.constants.app import ACTIONS
 from src.utils.constants.users import USER_FORMS, USER_MODELS, USER_POSITIONS, USER_PLACEHOLDERS, USER_FIELDS
 from src.services.requests_service import RequestsService
@@ -60,6 +60,7 @@ def academics(section ='e-notes', action ='list', id:str =None):
     data =None
     form: FlaskForm =ACADEMIC_FORMS[section] or None
     placeholders:dict =ACADEMIC_PLACEHOLDERS[section] or None
+    accepts:list =ACADEMIC_FILES[section] 
     fields =ACADEMIC_FIELDS[section] or None
      
 
@@ -70,8 +71,8 @@ def academics(section ='e-notes', action ='list', id:str =None):
     if action =='new':    
         if request.method =='POST':  
             response, status_code =service.post()
-            return response 
-        if params.get('init') =='app': return render_template('form.html', form =form, section =section, page =page, action =action, placeholders =placeholders)
+            return response, 400  
+        if params.get('init') =='app': return render_template('form.html', form =form, section =section, page =page, action =action, placeholders =placeholders, accepts=accepts)
 
     if action =='edit':
         if request.method =='POST': 
@@ -80,7 +81,7 @@ def academics(section ='e-notes', action ='list', id:str =None):
 
         data, status_code =service.get(id=id)
         if params.get('init') =='app': 
-            return render_template('form.html', form =form, section =section, page =page, action =action, placeholders =placeholders, data=data)
+            return render_template('form.html', form =form, section =section, page =page, action =action, placeholders =placeholders, data=data, accepts=accepts)
 
     if action =='view': 
         data, status_code =service.get(id=id)
@@ -91,7 +92,7 @@ def academics(section ='e-notes', action ='list', id:str =None):
         if status_code ==204: return jsonify({'deleted': True})
         return jsonify({'deleted': False, 'detail': response['detail']})
      
-    return render_template('academics.html', page =page, section =section, action =action, form =form, data =data, fields =fields, placeholders =placeholders)
+    return render_template('academics.html', page =page, section =section, action =action, form =form, data =data, fields =fields, placeholders =placeholders, accepts=accepts)
 
 def subscribers(): 
     page  ='subscribers'
