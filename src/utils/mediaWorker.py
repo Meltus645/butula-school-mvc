@@ -1,5 +1,5 @@
 from werkzeug.utils import secure_filename
-from uuid import uuid1  
+from uuid import uuid1   
 import os, base64
 from .exceptions import EmptyFileError, LargeFileError, UnSupportedFileError, UnreadableFileError
 

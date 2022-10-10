@@ -51,3 +51,12 @@ ACADEMIC_FORMS ={
     'school-calendar': CalendarForm,
     'classes': ClassesForm
 }
+
+ACADEMIC_FILES ={
+    'subjects': [],
+    'time-table': 'application/pdf',
+    'e-notes': 'application/pdf', 
+    'exams': [], 
+    'school-calendar': [], 
+    'classes': [], 
+}
