@@ -1,4 +1,42 @@
 <section>
+    {%if data %} 
+    <div class="profile-image">
+        <img src="data:/image/jpeg;base64,{{data.avatar}}" alt="{{data.name}}" />
+    </div>
+    <table class="lean-table">
+        <tbody>
+            <tr>
+                <td>Name</td>
+                <td>{{data.name}}</td>
+            </tr>
+            <tr>
+                <td>Class</td>
+                <td>{{data.form}}</td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>{{data.gender}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>{{data.phone}}</td>
+            </tr>
+            <tr>
+                <td>Admission Number</td>
+                <td>{{data.admission_number}}</td>
+            </tr>
+            <tr>
+                <td>Student Access Status</td>
+                <td>{{data.status}}</td>
+            <tr>
+                <td>Birtd Certificate Number</td>
+                <td>{{data.birth_certificate_number}}</td>
+            </tr>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-danger mt-3">Reset Password</button>
+    {%else%}
     <div class="profile-image">
         <img src="{{ url_for('static', filename ='img/std.png' ) }}" alt="Meltus" />
     </div>
@@ -34,6 +72,6 @@
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-danger mt-3">Reset Password</button>
-
+    <button class="btn btn-danger mt-3">Reset Password</button> 
+    {%endif%}
 </section>

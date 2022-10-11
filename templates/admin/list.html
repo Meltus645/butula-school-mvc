@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 {% for field in fields %}
-                    <th>{{field| strip_special |title}}</th>
+                    <th>{{field| alias(-1) | strip_special |title}}</th>
                 {% endfor %}
                 <th>Action</th>
             </tr>
@@ -13,6 +13,7 @@
             {% for item in data %}
             <tr> 
                 {% for field in fields %} 
+                {%set field =field | alias(0)%}
                 {%if not item[field] | type_of =='datetime'%}<td>{{item[field]}}</td>
                 {%else%}<td>{{item[field] | since}}</td>
                 {%endif%} 
@@ -20,6 +21,7 @@
                 <td>
                     <div class="d-flex">
                         {% if page  == 'academics' %} {% include 'url_for/academics.html'   %} 
+                        {% elif page  == 'students' or  page  == 'staff' %} {% include 'url_for/users.html'   %} 
                         {% endif %}
                     </div>
                 </td>
