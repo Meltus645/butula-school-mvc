@@ -10,3 +10,4 @@ properties =lambda cls: dir(cls) # calls dir() on a class, cls
 type_of =lambda obj: type(obj).__name__ 
 strip_special =lambda text: re.sub('[_\W]+', ' ', str(text).strip())
 since =lambda then: timeago.format(then, datetime.now()) # time difference between now and time_uploaded 
+alias =lambda name,index: name.split('|')[index]

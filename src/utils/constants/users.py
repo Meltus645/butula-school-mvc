@@ -1,5 +1,6 @@
-from src.models import StaffModel, StudentsModel
-from src.forms import StudentForm, StaffForm
+from src.models import StaffModel, StudentsModel, ResultsModel
+from src.forms import StudentForm, StaffForm, ResultsForm
+from flask_mongoengine.wtf import model_form
 
 USER_POSITIONS =['students', 'staff']
 
