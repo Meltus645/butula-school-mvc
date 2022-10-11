@@ -8,5 +8,4 @@ class NewsLetterSubcribersModel(Document):
     meta ={'collection': 'newsletter_subscriber'}
 
 
-    def __str__(self):
-        return f'{self.email}'
+    def __str__(self): return f'{self.email}'

@@ -7,6 +7,4 @@ class SchoolCalendarModel(Document):
     ends_on =DateField(required =True, unique=True)
     
     meta ={'collection': 'calendar'}
-
-    def __str__(self):
-        return f'{self.year}.{self.term}'
+    def __str__(self): return f'{self.year} term {self.term}'

@@ -19,7 +19,4 @@ class ResourcesModel(Document):
     time_uploaded =DateTimeField(required =False, default=datetime.now)
 
     meta ={'collection': 'resources', 'indexes': [{'fields': ['$topic']}]}
-
-     
-    def __str__(self):
-        return f'{self.topic}'
+    def __str__(self): return f'{self.topic}'

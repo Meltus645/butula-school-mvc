@@ -10,5 +10,4 @@ class TimetableModel(Document):
 
     meta ={'collection': 'timetable', 'indexes': [{'fields': ['$form', '$purpose'], 'default_language': 'english'}]}
 
-    def __str__(self):
-        return f'{self.form} {self.purpose} timetable'
+    def __str__(self): return f'{self.form} {self.purpose} timetable'

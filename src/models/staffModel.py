@@ -24,6 +24,4 @@ class StaffModel(Document):
         'collection': 'staff',
         'indexes': [{'fields': ['$name', '$email', '$group'], 'default_language': 'english'}]
     } 
-    
-    def __str__(self):
-        return f'{self.name}'
+    def __str__(self): return f'{self.name}'

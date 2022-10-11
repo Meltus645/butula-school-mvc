@@ -6,5 +6,4 @@ class ExamsModel(Document):
  
     meta ={'collection': 'exams', 'indexes': [{'fields': ['$exam_name', '$exam_type'], 'default_language': 'english'}]}
 
-    def __str__(self):
-        return f'{self.exam_name}'
+    def __str__(self): return f'{self.exam_name}'

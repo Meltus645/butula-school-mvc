@@ -7,7 +7,5 @@ class SubjectsModel(Document):
     meta ={
         'collection': 'subject',
         'indexes': [{'fields': ['$name'], 'default_language': 'english'}]
-    }
-
-    def __str__(self):
-        return f'{self.name}'
+    } 
+    def __str__(self): return f'{self.name}'

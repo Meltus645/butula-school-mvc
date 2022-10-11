@@ -4,6 +4,4 @@ class RolesModel(Document):
     name =StringField()
 
     meta ={'collection': 'role'}
-
-    def __str__(self):
-        return f'{self.name}'
+    def __str__(self): return f'{self.name}'
