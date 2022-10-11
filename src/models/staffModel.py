@@ -1,9 +1,10 @@
 from mongoengine import Document, StringField, ListField, ReferenceField, DictField, EmailField, BooleanField, DateTimeField
+from flask_login import UserMixin
 from datetime import datetime
 from .groupsModel import GroupsModel, PermissionsModel
 from .rolesModel import RolesModel
 
-class StaffModel(Document):
+class StaffModel(Document, UserMixin):
     name =StringField(regex=r'^[a-zA-Z ]+$', required =True, max_length=128) 
     staff_id =StringField(regex=r'^[0-9]+$', required =True, max_length=128) 
     phone =StringField(regex=r'^[0-9]+$', required =True, unique =True, max_length=13)

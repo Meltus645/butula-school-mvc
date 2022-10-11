@@ -1,9 +1,11 @@
-from mongoengine import Document, StringField, ListField, ReferenceField, DateTimeField
+from mongoengine import Document, StringField, ListField, ReferenceField, DateTimeField, EmbeddedDocumentListField
+from flask_login import UserMixin
 from datetime import datetime 
 from .classesModel import ClassesModel
 from .subjectsModel import SubjectsModel
+from .resultsModel import ResultsModel
 
-class StudentsModel(Document):
+class StudentsModel(Document, UserMixin):
     name =StringField(regex=r'^[a-zA-Z ]+$', required =True, max_length=128) 
     birth_certificate_number =StringField(required =True, unique =True, regex=r'^[0-9]{13,}$', max_length=18)
     gender =StringField(required =False, max_length=6, regex=r'^[a-zA-Z]+$', default ='Male') 
