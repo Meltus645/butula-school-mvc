@@ -6,3 +6,4 @@ from .exam_form import ExamForm
 from .subject_form import SubjectForm
 from .classes_form import ClassesForm
 from .calendar_form import CalendarForm
+from .resultsForm import ResultsForm
