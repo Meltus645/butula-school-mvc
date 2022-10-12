@@ -9,7 +9,7 @@ from flask_wtf import FlaskForm
 def dashboard():
     return render_template('admin/base.html', page="dashboard")
 
-def users(position:str, action='list', id =None, section:str ='bio'): 
+def users(position:str, action='list', id =None): 
     action =action.lower()
     position =position.lower() 
     if not position in USER_POSITIONS or not action in ACTIONS: return redirect(url_for('admin.error_404')), 404
@@ -20,18 +20,19 @@ def users(position:str, action='list', id =None, section:str ='bio'):
     form:FlaskForm =None 
     data: dict =None
     page =position
-    
+    section =params.get('section')
+    if not section in ['subjects', 'performance']: section ='bio' 
     
     if action == 'list':  
         data, status_code =service.get()
-        if params.get('init') =='app': return render_template('list.html', fields =USER_FIELDS[position], data=data, page=page, position=position), status_code 
+        if params.get('init') =='app': return render_template('list.html', fields =USER_FIELDS[position], data=data, page=page, position=position, section =section, action =action), status_code 
 
     if action == 'new':  
         if request.method =='POST':  
             response, status_code =service.post()
             return response 
         form =USER_FORMS[position] 
-        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position], page=page) 
+        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position], page=page, action =action) 
 
     if action == 'edit': 
         if request.method =='POST': 
@@ -39,14 +40,19 @@ def users(position:str, action='list', id =None, section:str ='bio'):
 
         data, status_code =service.get(id=id)    
         form =USER_FORMS[position]
-        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position], page =page) 
+        if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position], page =page, action =action, position =position) 
 
     if action == 'view':  
-        data, status_code =service.get(id=id)    
-        if params.get('init') =='app': return render_template('view.html', section =section, data =data, page =page) 
+        data, status_code =service.get(id=id)   
+        if params.get('init') =='app':  
+            return render_template('view.html', section =section, data =data, page =page, action =action)
 
-    return render_template(f'{position}.html', page=page, action =action, form =form, section =section, placeholders =USER_PLACEHOLDERS[position], fields =USER_FIELDS[position], data =data)
+    if action == 'delete':
+        response, status_code =service.delete(id=id)
+        if status_code ==204: return jsonify({'deleted': True})
+        return jsonify({'deleted': False, 'detail': response['detail']})
 
+    return render_template(f'{position}.html', page=page, action =action, form =form, section =section, placeholders =USER_PLACEHOLDERS[position], fields =USER_FIELDS[position], data =data, position =position)
  
 def academics(section ='e-notes', action ='list', id:str =None): 
     section =section.lower()
