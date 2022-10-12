@@ -21,9 +21,10 @@ const request =async (endpoint, method ='GET', data=null, csrf_token=null)  =>{
 const activateTab = async self =>{  
     const {parentNode, dataset} =self;  
     for(const node of parentNode.children) node.classList.contains('active') && node !== self? node.classList.remove('active'): self.classList.add('active');
-     
-    history.pushState('', '', dataset.uri)
-    const response =await request(`${dataset.uri}?init=app`);  
+    let {uri} =dataset 
+    history.pushState('', '', uri);
+    uri =/\?[a-zA-Z]+=/gi.test(uri)?`${uri}&init=app` :`${uri}?init=app`
+    const response =await request(uri);  
     if(response.ok) document.querySelector('#tabContent').innerHTML =await response.text();  
 }
  
