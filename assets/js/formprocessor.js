@@ -82,6 +82,7 @@ const processResponse = (response, form) =>{
     }else if(status>=500 && status <=599 ){ // server errors
 
     }else console.log(status); // unknown   
+    
 }
 
 const getElementById = id =>document.getElementById(id);

@@ -18,14 +18,13 @@ const request =async (endpoint, method ='GET', data=null, csrf_token=null)  =>{
     finally{return response;}
 };  
 
-const activateTab = async self =>{ 
+const activateTab = async self =>{  
     const {parentNode, dataset} =self;  
     for(const node of parentNode.children) node.classList.contains('active') && node !== self? node.classList.remove('active'): self.classList.add('active');
      
     history.pushState('', '', dataset.uri)
     const response =await request(`${dataset.uri}?init=app`);  
-
-    if(response.ok) document.querySelector('#tabContent').innerHTML =await response.text(); 
+    if(response.ok) document.querySelector('#tabContent').innerHTML =await response.text();  
 }
  
 const promptDelete =async (self, item) =>{
