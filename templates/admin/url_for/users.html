@@ -1,0 +1,3 @@
+<button data-uri="{{ url_for('admin.users',position =position, action ='edit', section =section, id =item.id) }}" class="btn btn-warning mr-3" onclick="activateTab(this)">Edit</button>
+<button data-uri="{{ url_for('admin.users',position =position, action ='view', section =section, id =item.id) }}" class="btn btn-danger" onclick="activateTab(this)">View</button>
+<button data-uri="{{ url_for('admin.users',position =position, action ='delete', section =section, id =item.id) }}" class="btn btn-danger" onclick="promptDelete(this,   `{{item['name']}}`)">Delete</button>{{action}}
