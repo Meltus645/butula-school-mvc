@@ -4,7 +4,8 @@ from .model_service import ModelService
 from mongoengine.errors import InvalidQueryError  
 from werkzeug.utils import secure_filename 
 from src.utils.passwords import generate_password, hash_password
-from src.utils.constants.flags import Flags
+from src.utils.constants.flags import Flags 
+from src.models.subjectsModel import SubjectsModel
 
 from src.utils.file_upload import upload_file
 
@@ -49,19 +50,22 @@ class RequestsService:
 
     def model_config(self, access_method ='post')->tuple:
         form ={key: (json.loads(value) if len(value) >0 and (value[0]=='[' and value[-1] ==']') else value) for (key, value) in [*{**request.form}.items()]}  #  check if a value has [ at start and ] at end and decode it
+        if access_method =='post' and 'student_subjects' in form: 
+            form.pop('student_subjects') 
+            form['subjects'] =[subject.id for subject in SubjectsModel.objects.filter(subject_type ='Compulsory')]
         if form.get('csrf_token'): form.pop('csrf_token') 
         filekey =form.get('file_uploading') 
         empty ={key: f'{key} required*'.replace('_', ' ').capitalize() for (key, value) in [*{**form}.items()] if len(value) <=0}
         if len(empty) >0: return False, empty
         if 'birth_certificate_number' in form: form['password']  =hash_password(form.get('birth_certificate_number'))
-        if 'staff_id' in form: form['password'] =hash_password(generate_password())
+        if 'staff_id' in form: form['password'] =hash_password(generate_password()) 
         if filekey: 
             file_received =request.files.get(filekey) 
             done, msg =upload_file(file_received, as_b64=True) 
             if done:  
                 form['filename'] =secure_filename(file_received.filename)
                 form[filekey] =msg 
-            else:
+            else: 
                 if access_method =='put':
                     if not msg.flag.name == Flags.FILE_EMPTY.name: return False, msg
                     else: return False, msg
