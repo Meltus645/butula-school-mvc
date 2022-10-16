@@ -4,6 +4,8 @@ from src.utils.constants.app import ACTIONS
 from src.utils.constants.users import USER_FORMS, USER_MODELS, USER_POSITIONS, USER_PLACEHOLDERS, USER_FIELDS
 from src.services.requests_service import RequestsService
 from flask_wtf import FlaskForm
+from wtforms import FloatField 
+from src.forms import ResultsForm, SubjectsSelectionForm
 
 
 def dashboard():
@@ -43,9 +45,21 @@ def users(position:str, action='list', id =None):
         if params.get('init') =='app': return render_template('form.html', form =form, placeholders =USER_PLACEHOLDERS[position], page =page, action =action, position =position) 
 
     if action == 'view':  
-        data, status_code =service.get(id=id)   
+        data, status_code =service.get(id=id) 
+        popup = params.get('popup') 
+        if request.method =='POST': 
+            data.subjects =request.form.get('subjects')
+            print(data.to_pymongo().keys())
+            return  service.put(id =id, data=data)
+
+        if popup:
+            if section == 'performance':
+                form =ResultsForm
+                for subject in data.subjects: setattr(form, subject.name.lower(), FloatField(label=subject.name, name =f'{subject.code}'))
+            elif section =='subjects': form =SubjectsSelectionForm  
+            return render_template('modal.html', section =section, data =data, page =page, action =action, popup =popup, form =form, position =position)
         if params.get('init') =='app':  
-            return render_template('view.html', section =section, data =data, page =page, action =action)
+            return render_template('view.html', section =section, data =data, page =page, action =action, position =position)
 
     if action == 'delete':
         response, status_code =service.delete(id=id)
