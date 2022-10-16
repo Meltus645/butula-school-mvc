@@ -34,9 +34,9 @@ class RequestsService:
         except Exception as e:  
             return {'detail': f'{e}'}, 400
     
-    def put(self, id:str)->tuple: 
+    def put(self, id:str, data=None)->tuple: 
         try: 
-            done, result =self.model_config(access_method ='put')
+            done, result =self.model_config(access_method ='put', data=data)
             if not done: return result
 
             return self.model.edit(id=id, data=result) 
@@ -48,8 +48,10 @@ class RequestsService:
         except Exception as e: return {'detail': f'{e}'}, 500 
 
 
-    def model_config(self, access_method ='post')->tuple:
-        form ={key: (json.loads(value) if len(value) >0 and (value[0]=='[' and value[-1] ==']') else value) for (key, value) in [*{**request.form}.items()]}  #  check if a value has [ at start and ] at end and decode it
+    def model_config(self, access_method ='post', data =None)->tuple:
+        if data: request_form =data
+        else: request_form =request.form
+        form ={key: (json.loads(value) if len(value) >0 and (value[0]=='[' and value[-1] ==']') else value) for (key, value) in [*{**request_form}.items()]}  #  check if a value has [ at start and ] at end and decode it
         if access_method =='post' and 'student_subjects' in form: 
             form.pop('student_subjects') 
             form['subjects'] =[subject.id for subject in SubjectsModel.objects.filter(subject_type ='Compulsory')]

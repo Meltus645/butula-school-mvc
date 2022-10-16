@@ -14,9 +14,11 @@ class ModelService:
 
     def fetch(self, id:str =None, search_q:str =None, **filters)->tuple:
         try: 
+            try: order_key =self.model.order_key 
+            except Exception: order_key ='' 
             if id: queryset:dict =self.model.objects.get(id=id)
-            elif search_q: queryset:list =self.model.objects.search_text(search_q) 
-            else: queryset:list =self.model.objects.filter(**filters) 
+            elif search_q: queryset:list =self.model.objects.search_text(search_q).order_by(order_key) 
+            else: queryset:list =self.model.objects.filter(**filters).order_by(order_key) 
             response =queryset, 200
 
         except ValidationError as e:  response = { 'detail': 'cannot resolve params parsed' }, 400  
