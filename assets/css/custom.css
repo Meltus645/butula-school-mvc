@@ -8,6 +8,7 @@
     box-shadow: inset 0 0 6px rgba(0,0,0,.3); 
 }
 .cp-body{
+    --offset: 1.25rem;
     width:100vw;
     height: 100vh;
     font-size: .88rem;
@@ -314,4 +315,42 @@ aside .logo img{
 }
 .custom-file-field:hover{
     --span-bg: #DDE0E3;
+}
+
+.btn-select{
+    justify-content: flex-start;
+    gap: var(--offset);
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+} 
+.btn-select button{
+    padding: .5rem calc(var(--offset) + .5rem); 
+    position:relative;
+}
+.btn-select button[data-selectable=true]::after,
+.btn-select button[data-selectable=true][data-item-selected=true]::after{  
+    position: absolute; 
+    font-size: 1rem;
+    font-weight: 500;
+    right: -.5rem; 
+    top: -.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--offset); width: var(--offset);
+    border-radius: 50%;
+    color: white;
+}
+.btn-select button[data-selectable=true]::after{
+    content: '\002B'; 
+    background-color: green;
+}
+
+.btn-select button[data-selectable=true][data-item-selected=true]::after{
+    content: '\00D7'; 
+    background-color: orange; 
+}
+.modal-body form button#save{
+    display: none;
 }
