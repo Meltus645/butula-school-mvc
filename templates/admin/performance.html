@@ -1,5 +1,5 @@
-<section>
-    <a href="">Add Result</a>
+<section id="result-section">
+    <button data-uri="{{ url_for('admin.users',position =position, action =action, section =section, id=data.id, popup='form')}}" data-parent="#result-section" onclick="modalPop(this)">Add Result</button>
     <table class="lean-table">
         <thead>
             <tr>
@@ -27,5 +27,5 @@
                 </th> 
             </tr> 
         </tbody>
-    </table>
+    </table> 
 </section>

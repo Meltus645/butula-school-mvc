@@ -3,9 +3,7 @@
     <div class="tabs">
         <div class="d-flex tab-labels">
             <button type="button" data-uri="{{ url_for('admin.users', position =page|lower) }}" class="btn-tab {% if action =='list' %}active{%endif%}" onclick="activateTab(this);" id="list">List</button> 
-            <button type="button" data-uri="{{ url_for('admin.users', position =page|lower, action ='new' ) }}" class="btn-tab {% if action =='new' %}active{%endif%}" onclick="activateTab(this);">New</button> 
-            <button type="button" data-uri="{{ url_for('admin.users', position =page|lower, action ='edit' ) }}" class="btn-tab {% if action =='edit' %}active{%endif%}" onclick="activateTab(this);">Edit</button> 
-            <button type="button" data-uri="{{ url_for('admin.users', position =page|lower, action ='view' ) }}" class="btn-tab {% if action =='view' %}active{%endif%}" onclick="activateTab(this);">View</button> 
+            <button type="button" data-uri="{{ url_for('admin.users', position =page|lower, action ='new' ) }}" class="btn-tab {% if action =='new' %}active{%endif%}" onclick="activateTab(this);">New</button>  
         </div>
         <div class="tab-content py-5" id="tabContent">
             {% if action =='view'%} {% include 'view.html'%} 

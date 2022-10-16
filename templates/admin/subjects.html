@@ -1,26 +1,30 @@
-<table class="lean-table">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-{% if data and data.subjects%}
-<tbody>
-    {%for subject in data.subjects%}
-        <tr>
-            <td>1</td>
-            <td>{{subject.code}}</td>
-            <td>{{subject.name}}</td>
-            <td>{{subject.subject_type}}</td>
-        </tr> 
-    {%endfor%}
-</tbody>
-</table>
-<p>{{data.subjects|count}} subjects</p>
-<button class="btn btn-warning">Print</button>
-{%else%} 
-<h3>No subjects</h3>
-{%endif%}
+<section id="result-section">
+
+    <button data-uri="{{ url_for('admin.users',position =position, action =action, section =section, id=data.id, popup='form')}}" data-parent="#result-section" onclick="modalPop(this)">Add Result</button>
+    <table class="lean-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+    {% if data and data.subjects%}
+    <tbody>
+        {%for subject in data.subjects%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{subject.code}}</td>
+                <td>{{subject.name}}</td>
+                <td>{{subject.subject_type}}</td>
+            </tr> 
+        {%endfor%}
+    </tbody>
+    </table>
+    <p>{{data.subjects|count}} subjects</p>
+    <button class="btn btn-warning">Print</button>
+    {%else%} 
+    <h3>No subjects</h3>
+    {%endif%}
+</section>
