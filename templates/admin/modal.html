@@ -1,0 +1,16 @@
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Modal actions" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal Title</h5>
+                <button class="close"><span aria-hidden="true" data-dismiss="modal">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                {% if popup  =='form'%} {%include 'form.html'%}{% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="submitForm(this)" data-cta="save">Save</button> 
+            </div>
+        </div>
+    </div>
+</div> 
