@@ -1,17 +1,18 @@
-from src.models import ClassesModel, ExamsModel, ResourcesModel, SchoolCalendarModel, SubjectsModel, TimetableModel
-from src.forms import ResourceForm, TimetableForm, ExamForm, SubjectForm, ClassesForm, CalendarForm
+from src.models import ClassesModel, ExamsModel, ResourcesModel, SchoolCalendarModel, SubjectsModel, TimetableModel, DepartmentsModel
+from src.forms import ResourceForm, TimetableForm, ExamForm, SubjectForm, ClassesForm, CalendarForm, DepartmentForm
 
-ACADEMIC_SECTIONS =['e-notes', 'subjects', 'exams', 'classes','time-table', 'school-calendar'] 
+ACADEMIC_SECTIONS =['e-notes', 'subjects', 'exams', 'classes','time-table', 'school-calendar', 'departments'] 
 
 ACADEMIC_FIELDS ={
-    'subjects': ['code', 'name', 'subject_type|type'],
+    'subjects': ['code', 'name', 'subject_type|type', 'department'],
     'e-notes': ['topic', 'subject', 'resource_type', 'author', 'time_uploaded'],
     'exams': ['exam_name', 'exam_type'],
     'time-table': ['form', 'purpose', 'filename'],
     'school-calendar': ['year', 'term', 'starts_from', 'ends_on'],
-    'classes': ['form', 'stream']
+    'classes': ['form', 'stream'],
+    'departments': ['name', 'head'],
 }
- 
+  
 ACADEMIC_PLACEHOLDERS ={
     'subjects': {
         'code': 'Enter subject code e.g 101',
@@ -29,7 +30,13 @@ ACADEMIC_PLACEHOLDERS ={
         'year': 'Enter current academic year',
         'term': 'Enter current term'
     },
-    'classes': {'form': 'Enter class level e.g 1', 'stream': 'Enter stream name'}
+    'classes': {
+        'form': 'Enter class level e.g 1', 
+        'stream': 'Enter stream name'
+    },
+    'departments': {
+        'name': 'Enter name of the new department', 
+    }
 
 }
 
@@ -39,7 +46,8 @@ ACADEMIC_MODELS ={
     'exams': ExamsModel,
     'time-table': TimetableModel,
     'school-calendar': SchoolCalendarModel,
-    'classes': ClassesModel
+    'classes': ClassesModel,
+    'departments': DepartmentsModel,
 }
 
 ACADEMIC_FORMS ={
@@ -48,7 +56,8 @@ ACADEMIC_FORMS ={
     'exams': ExamForm,
     'time-table': TimetableForm,
     'school-calendar': CalendarForm,
-    'classes': ClassesForm
+    'classes': ClassesForm,
+    'departments': DepartmentForm,
 }
 
 ACADEMIC_FILES ={
@@ -58,4 +67,5 @@ ACADEMIC_FILES ={
     'exams': [], 
     'school-calendar': [], 
     'classes': [], 
+    'departments': [], 
 }
