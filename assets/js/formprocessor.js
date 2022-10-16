@@ -31,8 +31,6 @@ const resetForm =form =>{
     fileLabel?fileLabel.textContent =' No file chosen' :null;
 }
 
- 
-
 const postForm =evt =>{
     evt.preventDefault(); 
     const {target} =evt;
@@ -72,10 +70,11 @@ const processResponse = (response, form) =>{
     }else if(status>=300 && status<=399){ // redirects
 
     }else if(status>=400 && status <=499 ){ // user errors 
+        console.log(responseJSON);
         [...Object.keys(responseJSON)].forEach(key =>{
             const input =getElementById(key);
             const helper =getElementById(`${key}-helper`);
-            helper.textContent =responseJSON[key]; 
+            helper.textContent =responseJSON[key];
             modifyElementClassLists([{ element: input, remove: ['is-valid'], add: ['is-invalid'], }, { element: helper, remove: ['valid-feedback'], add: ['invalid-feedback'], } ])  
         })
 
