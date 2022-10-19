@@ -41,8 +41,8 @@ class ModelService:
    
     def edit(self, id:str, data:dict)->tuple:
         try:
-            for key in data.keys():
-                data[key] =self.model_refs(data[key])  
+            for key in data.keys(): data[key] =self.model_refs(data[key])  
+            print(data)
             self.model.objects.get(id=id).update(**data) 
             response =  {'detail': "changes saved successfully"}, 200 
         
@@ -50,7 +50,8 @@ class ModelService:
         except FieldDoesNotExist as e: response ={'detail': e.to_dict()}, 404
         except DuplicateKeyError: response = {'detail': 'conflict'}, 409
         except NotUniqueError: response = {'detail': 'conflict'}, 409
-        except ValidationError as e: response ={'detail': f'invalid field {e.field_name}'}, 400 
+        except Exception as e: print(e)
+        # except ValidationError as e: response ={'detail': f'invalid field {e.field_name}'}, 400 
         finally: return response
 
     

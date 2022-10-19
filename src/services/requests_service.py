@@ -37,6 +37,7 @@ class RequestsService:
     def put(self, id:str, data=None)->tuple: 
         try: 
             done, result =self.model_config(access_method ='put', data=data)
+            print(result)
             if not done: return result
 
             return self.model.edit(id=id, data=result) 
