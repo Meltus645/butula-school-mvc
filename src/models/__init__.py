@@ -15,3 +15,5 @@ from .timetableModel import TimetableModel
 from .visitorsSessionsModel import VistorsSessionModel
 from .vistorsModel import VistorsModel
 from .departmentsModel import DepartmentsModel
+from .gradesModel import GradesModel
+from .gradeGroupsModel import GradeGroupModel
