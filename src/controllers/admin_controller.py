@@ -23,7 +23,12 @@ def controller(page ='dashboard', section:str =None, action:str =None, id:str =N
         tab =params.get('tab')
         if page =='manage' and not tab in ['subjects', 'performance']: tab ='bio' 
         context ={'page': page, 'section': section, 'action': action, 'tab': tab} 
-
+        if page =='dashboard':  
+            for model in model_data.get('model'): 
+                key =[*model.keys()][0]
+                context_service =RequestsService(model= model.get(key))
+                context[key] =context_service.get()[0] 
+            
         if action =='list': 
             data, status_code =service.get()   
             context ={**context, 'data': data, 'fields': fields}

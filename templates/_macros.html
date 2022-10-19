@@ -7,3 +7,17 @@
     <meta name="description" content="{{description}}">
     <meta name="keywords" content="{{', '.join(keywords)}}">
     <link rel="canonical" href="{{url_for(canonical)}}">{% endmacro%} 
+
+{% macro insights_macro(cards) %}<title>{{title}}</title>
+    {%for card in cards%}
+    <div class="custom-card d-flex"> 
+        <h2 class="custom-card-title">{{card['title']}}</h2>
+        <div class="custom-card-content d-flex"> 
+            <span class="{{card['icon-bg']}} custom-card-icon">{{card['icon']}}</span>
+            <div class="custom-card-body"> 
+                <h3 class="card-count">{{card['value']}}</h3>
+                <p class="text-muted card-description">{{card['label']}}</p>
+            </div>
+        </div>
+    </div>
+{%endfor%}{% endmacro%} 

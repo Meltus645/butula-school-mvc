@@ -55,7 +55,7 @@ TEMPLATES ={
 }
 
 MODELS ={
-    'dashboard': None,
+    'dashboard': [{'students':StudentsModel},],
     'academics': {
         'subjects': SubjectsModel,
         'e-notes': ResourcesModel,
@@ -131,3 +131,11 @@ FILE_MIMES ={
     },
     'manage': '.png, .jpg, .jpeg'
 }  
+
+INSIGHTS_CARD_TEMPLATE ={
+    'title': '',
+    'value': '',
+    'icon': '',
+    'icon-bg': '',
+    'label': ''
+} 
