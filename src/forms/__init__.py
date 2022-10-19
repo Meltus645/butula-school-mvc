@@ -9,3 +9,4 @@ from .calendar_form import CalendarForm
 from .results_form import ResultsForm
 from .subject_selection_form import SubjectsSelectionForm
 from .departments_form import DepartmentForm
+from .grade_group_form import GradeGroupForm
