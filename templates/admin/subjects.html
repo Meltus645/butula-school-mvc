@@ -1,6 +1,6 @@
 <section id="result-section">
 
-    <button data-uri="{{ url_for('admin.users',position =position, action =action, section =section, id=data.id, popup='form')}}" data-parent="#result-section" onclick="modalPop(this)">Add Result</button>
+    <button data-uri="{{ url_for('admin.controller',section =section, page=page, action =action, tab =tab, id=data.id, popup='form')}}" data-parent="#result-section" onclick="modalPop(this)">Add Result</button>
     <table class="lean-table">
         <thead>
             <tr>

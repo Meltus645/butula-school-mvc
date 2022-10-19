@@ -1,13 +1,13 @@
-{% extends 'base.html' %}
-{% block content %} 
-    <div class="tabs">
-        <div class="d-flex tab-labels">
-            <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this);">All</button> 
-            <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this);">Unread</button> 
-            <button type="button" data-uri="" class="btn-tab {% if section =='bio' %}active{%endif%}" onclick="activateTab(this);">Read</button> 
-        </div>
-        <div class="tab-content pt-4" id="tabContent">
-            {% include 'list.html'   %} 
-        </div>
-    </div>
+{% extends 'base.html' %} 
+{% block content %}  
+{% include 'tabs.html'%}
 {% endblock %}
+{% block navigation %} 
+    <a href="{{ url_for('admin.controller', page =page, section ='grades' ) }}" class="nav-link">Grades</a> 
+    <a href="{{ url_for('admin.controller', page =page, section ='carousels' ) }}" class="nav-link">Carousels</a> 
+    <a href="{{ url_for('admin.controller', page =page, section ='time-table' ) }}" class="nav-link">Timetable</a>
+    <a href="{{ url_for('admin.controller', page =page, section ='departments' ) }}" class="nav-link">Departments</a>
+    <a href="{{ url_for('admin.controller', page =page, section ='news-and-events' ) }}" class="nav-link">News &amp; Events</a> 
+    <a href="{{ url_for('admin.controller', page =page, section ='school-calendar' ) }}" class="nav-link">School Calendar</a>
+{% endblock %} 
+{% block sectionHead %}Sections{% endblock %}
