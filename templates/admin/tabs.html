@@ -1,0 +1,18 @@
+<div class="tabs">
+    <div class="d-flex tab-labels">
+        <button type="button" data-uri="{{ url_for('admin.controller', page =page, section =section) }}" class="btn-tab {% if action =='list' %}active{%endif%}" onclick="activateTab(this, '{{action}}');" id="list">List</button> 
+        <button type="button" data-uri="{{ url_for('admin.controller', page =page, section =section, action ='new' ) }}" class="btn-tab {% if action =='new' %}active{%endif%}" onclick="activateTab(this);">New</button> 
+        {% if action =='edit' or action =='view' %} 
+        <button type="button" data-uri="{{ url_for('admin.controller', page =page, section =section, action ='edit' ) }}" class="btn-tab {% if action =='edit' %}active{%endif%}" onclick="activateTab(this);">Edit</button> 
+        {% if not section|lower =='subjects'%} 
+        <button type="button" data-uri="{{ url_for('admin.controller', page =page, section =section, action ='view' ) }}" class="btn-tab {% if action =='view' %}active{%endif%}" onclick="activateTab(this);">View</button> 
+        {% endif %}
+        {% endif %} 
+    </div> 
+    <div class="tab-content pt-4" id="tabContent">
+        {% if action =='list' %} {% include 'list.html'%}
+        {% elif action =='new' or action =='edit'%} {% include 'form.html'%}
+        {% elif action =='view' %} {% include 'view.html'%} 
+        {% endif %} 
+    </div> 
+</div>
