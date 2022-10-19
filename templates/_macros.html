@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Butula School-MVC</title>
+{% macro metamacro(title, description, keywords, canonical) %}<title>{{title}}</title>
     <meta charset="UTF-8">
+    <meta name="robots" content="index">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
-</head>
-<body>
-    <section>
-        <h2>Butula School</h2> 
-        <p>mvc design</p>
-    </section>
-</body>
-</html>
+    <meta name="title" content="{{title}}">
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{', '.join(keywords)}}">
+    <link rel="canonical" href="{{url_for(canonical)}}">{% endmacro%} 

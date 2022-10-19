@@ -1,20 +1,13 @@
+{% from '_macros.html' import metamacro %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="robots" content="index">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    {%block metadata%} <title>Butula National School. Home of champions</title>
-    <meta name="title" content="Butula National School. Home of champions">
-    <meta name="description" content="Top performing national boys' school located in Busia County.">
-    <meta name="keywords" content="Butula, School, Busia, National Schools, Boy Schools, Busia County, Best Schools">
-    <link rel="canonical" href="{{url_for('public.home')}}">{%endblock metadata%}
+    {{metamacro(*macros)}}    
     <link rel="stylesheet" type ="text/css" href="{{url_for('static', filename ='css/vendor/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/default.css')}}">
-    <link rel="stylesheet" type ="text/css" href="{{url_for('static', filename ='css/styles.css')}}"> 
+    <link rel="stylesheet" type ="text/css" href="{{url_for('static', filename ='css/styles.css')}}">
     <link rel="apple-touch-icon" href="/favicon.png">
-    <link rel="shortcut icon" href="/favicon.ico"/> 
+    <link rel="shortcut icon" href="/favicon.ico"/>  
 </head>
 <body class="bg-white" id="bdy">
     <header>
@@ -155,8 +148,7 @@
                     <ul class="nav flex-column light-links">   
                       <li class="nav-item"><a class="nav-link" href="{{url_for('public.about')}}">About</a></li>
                       <li class="nav-item"><a class="nav-link" href="{{url_for('public.contacts')}}">Contacts</a></li>
-                      <li class="nav-item"><a class="nav-link" href="{{url_for('public.policy')}}">Privacy policy</a></li>
-                      <li class="nav-item"><a class="nav-link" href="{{url_for('public.terms')}}">Terms and Conditions</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{url_for('public.policy')}}">Privacy policy</a></li> 
                     </ul>
                 </div>
                   <div class="img-wrap col-sm-3"> 
