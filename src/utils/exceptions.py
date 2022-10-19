@@ -37,4 +37,8 @@ class UnSupportedFileError(TypeError):
 
     def __str__(self) -> str:
         return self.message 
- 
+
+class PageNotFoundError(Exception):
+    def __init__(self, message ="404 Page Not Found"):
+        super(PageNotFoundError, self).__init__(message) 
+        self.message =message 

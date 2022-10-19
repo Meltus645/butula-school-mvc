@@ -14,4 +14,5 @@ def load_filters(app)->None:
     app.jinja_env.filters['type_of'] =type_of
     app.jinja_env.filters['strip_special'] =strip_special
     app.jinja_env.filters['alias'] =alias
-      
+
+ 
