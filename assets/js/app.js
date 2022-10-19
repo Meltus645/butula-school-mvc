@@ -68,17 +68,17 @@ function subjectSelection(parent){
     const content =parent.querySelector('[data-content=subjects]');  
     const parentNode =content.parentNode; 
     dataSets.subjects =JSON.parse(content.value);  
-    filterSubjects();
-
+    
     // create child element
     const optionsDisplay =createElement('div');
-    const input =createElement('input', {name: 'subjects', type: 'hidden', value: content.value});   
+    const input =createElement('input', {name: 'subjects', type: 'hidden', value: []});   
     
     // append to parent element/node
     optionsDisplay.appendChild(selectedContainer);
     optionsDisplay.appendChild(selectableContainer);
-    optionsDisplay.appendChild(input);
+    parentNode.appendChild(input);
     parentNode.appendChild(optionsDisplay);
+    filterSubjects();
     
 }  
 
@@ -91,10 +91,13 @@ function toggleItemSelection (self){
 const filterSubjects = ()=>{
     selectableContainer.innerHTML ='';
     selectedContainer.innerHTML ='';
-     
-   const departments ={}; 
+    const subjects_selected =[]; 
+    const departments ={}; 
     dataSets.subjects.forEach(subject=> {
-        if(subject.selected) {selectedContainer.innerHTML =`${selectedContainer.innerHTML}<li><button type ="button" data-item ="${subject.id}" data-item-selected ="${subject.selected}" onclick ="toggleItemSelection(this)" data-selectable ="${subject.type =='Optional'}">${subject.name}</button></li>`} 
+        if(subject.selected) {
+            subjects_selected.push(subject.id)
+            selectedContainer.innerHTML =`${selectedContainer.innerHTML}<li><button type ="button" data-item ="${subject.id}" data-item-selected ="${subject.selected}" onclick ="toggleItemSelection(this)" data-selectable ="${subject.type =='Optional'}">${subject.name}</button></li>`;
+        } 
         else{ 
             departments[subject.department] =departments[subject.department]?departments[subject.department]:[]
             departments[subject.department] =[...departments[subject.department],`<li><button type ="button" data-item ="${subject.id}" data-item-selected ="${subject.selected}" onclick ="toggleItemSelection(this)" data-selectable ="true">${subject.name}</button></li>`];
@@ -108,6 +111,8 @@ const filterSubjects = ()=>{
             </ul> 
         `
     }).join(''); 
+    selectedContainer.parentNode.parentNode.subjects.value =JSON.stringify(subjects_selected);
+    console.log(selectedContainer.parentNode.parentNode.subjects.value);
 };
 
 function createElement (name, properties={}){
